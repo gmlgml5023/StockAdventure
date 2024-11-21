@@ -1,62 +1,30 @@
+import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import axios from '@/plugins/axios'
+import axios from 'axios'
 
-export const useArticleStore = defineStore('article', {
-  state: () => ({
-    articles: [],
-    currentArticle: null,
-    loading: false,
-    error: null
-  }),
-  
-  actions: {
-    async fetchArticles() {
-      this.loading = true
-      try {
-        const response = await axios.get('articles/')
-        this.articles = response.data
-      } catch (error) {
-        this.error = error.message
-      } finally {
-        this.loading = false
-      }
-    },
-    
-    async fetchArticle(id) {
-      this.loading = true
-      try {
-        const response = await axios.get(`articles/${id}/`)
-        this.currentArticle = response.data
-      } catch (error) {
-        this.error = error.message
-      } finally {
-        this.loading = false
-      }
-    },
+export const useArticleStore = defineStore('article', () => {
+  const articles = ref([])
+  const API_URL = 'http://127.0.0.1:8000'
+  // const token = ref(null)
 
-    async createArticle(articleData) {
-      try {
-        const response = await axios.post('articles/', articleData)
-        this.articles.push(response.data)
-        return response.data
-      } catch (error) {
-        this.error = error.message
-        throw error
-      }
-    },
-
-    async updateArticle(id, articleData) {
-      try {
-        const response = await axios.put(`articles/${id}/`, articleData)
-        const index = this.articles.findIndex(article => article.id === id)
-        if (index !== -1) {
-          this.articles[index] = response.data
-        }
-        return response.data
-      } catch (error) {
-        this.error = error.message
-        throw error
-      }
-    }
+  // DRF로 전체 게시글 요청을 보내고 응답을 받아 articles에 저장하는 함수
+  const getArticles = function () {
+    axios({
+      method: 'get',
+      url: `${API_URL}/articles/`,
+      // headers: {
+      //   Authorization: `Token ${token.value}`
+      // }
+    })
+      .then((res) => {
+        articles.value = res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
-})
+
+  return { articles, API_URL, getArticles }
+  // return { articles, API_URL, getArticles, token }
+}, { persist: true })
+
