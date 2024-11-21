@@ -67,7 +67,7 @@ const logIn = function (payload) {
       .then((res) => {
         console.log(res.data)
         token.value = null
-        router.push({ name: 'ArticleView' })
+        router.push({ name: 'home' })
       })
       .catch((err) => {
         console.log(err)

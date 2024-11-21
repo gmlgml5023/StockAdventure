@@ -1,14 +1,27 @@
 <template>
   <div>
     <nav>
-      <router-link to="/signup" class="nav-button">회원가입</router-link>
-      <router-link to="/login" class="nav-button">로그인</router-link>
+      <template v-if="!store.isLogin">
+        <router-link to="/signup" class="nav-button">회원가입</router-link> ㅣ
+        <router-link to="/login" class="nav-button">로그인</router-link>
+      </template>
+      <template v-else>
+        <button @click="logOut" class="nav-button">로그아웃</button>
+      </template>
     </nav>
     <router-view></router-view>
   </div>
 </template>
 
 <script setup>
+import { RouterView, RouterLink } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
+
+const store = useAuthStore()
+
+const logOut = function () {
+  store.logOut()
+}
 </script>
 
 <style scoped>
@@ -26,6 +39,8 @@ nav {
   background-color: #f0f0f0;
   border-radius: 5px;
   transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
 }
 
 .nav-button:hover {
