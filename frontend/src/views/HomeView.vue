@@ -1,9 +1,22 @@
+<template>
+  <div class="home">
+    <h1>Stock Adventure</h1>
+    <nav>
+      <router-link to="/articles">Articles</router-link>
+    </nav>
+  </div>
+</template>
+
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+// TheWelcome import 제거
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style scoped>
+.home {
+  padding: 20px;
+}
+
+nav {
+  margin-top: 20px;
+}
+</style>
