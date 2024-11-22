@@ -1,7 +1,13 @@
+// src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
+import StockList from '../views/StockList.vue'  // 경로 주의
 
 const routes = [
-  // 라우트를 여기에 추가하세요
+  {
+    path: '/',
+    name: 'StockList',
+    component: StockList
+  }
 ]
 
 const router = createRouter({
