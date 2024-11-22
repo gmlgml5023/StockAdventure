@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'articles',
     'journals',
     'stocks',
+    'investment_style',
 
     # DRF
     'rest_framework',
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+
 
     'django.contrib.admin',
     'django.contrib.auth',
