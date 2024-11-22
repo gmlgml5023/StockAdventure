@@ -1,10 +1,8 @@
+# stocks/urls.py
 from django.urls import path
 from . import views
 
-app_name = 'stocks'
-from django.urls import path
-from .views import StockListView
-
 urlpatterns = [
-    path('', StockListView.as_view(), name='stock-list'),
+    path('', views.stock_list, name='stock-list'),
+    path('update/', views.stock_update, name='stock-update'),
 ]
