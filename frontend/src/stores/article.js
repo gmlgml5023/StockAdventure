@@ -24,7 +24,24 @@ export const useArticleStore = defineStore('article', () => {
       })
   }
 
-  return { articles, API_URL, getArticles }
+  // 게시글 수정 함수
+  const updateArticle = function (articleId, updatedData) {
+    return axios({
+      method: 'put',
+      url: `${API_URL}/articles/${articleId}/`,
+      data: updatedData
+    })
+  }
+
+  // 게시글 삭제 함수
+  const deleteArticle = function (articleId) {
+    return axios({
+      method: 'delete',
+      url: `${API_URL}/articles/${articleId}/`
+    })
+  }
+
+  return { articles, API_URL, getArticles, updateArticle, deleteArticle }
   // return { articles, API_URL, getArticles, token }
 }, { persist: true })
 

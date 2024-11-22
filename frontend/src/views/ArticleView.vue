@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h1>Article Page</h1>
+      <h1>커뮤니티</h1>
       <RouterLink :to="{ name: 'CreateView' }">Create</RouterLink>
       <ArticleList />
     </div>
