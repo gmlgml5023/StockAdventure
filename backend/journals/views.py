@@ -28,7 +28,7 @@ def journal_list(request):
 
 # 매매일지 상세 관련 (조회, 수정, 삭제)
 @api_view(['GET', 'DELETE', 'PUT'])
-def jouranl_detail(request, journal_pk):
+def journal_detail(request, journal_pk):
     journal = get_object_or_404(Journal, pk=journal_pk)
 
     if request.method == 'GET':
