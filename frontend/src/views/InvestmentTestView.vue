@@ -65,7 +65,7 @@ const submitAnswers = async () => {
       answers.value,
       {
         headers: {
-          Authorization: `Token ${authStore.token}`,
+          Authorization: `Token ${token}`,
           "Content-Type": "application/json",
         },
       }
