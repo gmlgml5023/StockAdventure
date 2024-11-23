@@ -1,9 +1,12 @@
+<template>
+  <div>
+    <h2>홈화면</h2>
+  </div>
+</template>
+
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style>
+
+</style>
