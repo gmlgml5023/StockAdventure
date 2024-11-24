@@ -1,13 +1,11 @@
-<!-- src/App.vue -->
 <template>
-  <div class="app">
-    <header>
-      <h1>Stock Adventure</h1>
-    </header>
-    
-    <main>
-      <router-view></router-view>
-    </main>
+  <div id="app">
+    <nav>
+      <RouterLink to="/stocklist/">주식정보조회</RouterLink> |
+      <RouterLink to="/journals/">매매일지</RouterLink> |
+      <RouterLink to="/articles/">커뮤니티</RouterLink>
+    </nav>
+    <router-view/>
   </div>
 </template>
 
@@ -15,6 +13,7 @@
 </script>
 
 <style scoped>
+
 .app {
   max-width: 1200px;
   margin: 0 auto;
@@ -36,4 +35,3 @@ h1 {
 main {
   min-height: calc(100vh - 150px);
 }
-</style>
