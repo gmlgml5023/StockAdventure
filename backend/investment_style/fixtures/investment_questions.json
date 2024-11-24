@@ -1,0 +1,303 @@
+[
+  {
+    "model": "investment_style.stylequestion",
+    "pk": 1,
+    "fields": {
+      "question_text": "투자 기간은 어느 정도로 생각하고 계십니까?"
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 1,
+    "fields": {
+      "question": 1,
+      "choice_text": "3년 이상",
+      "style_points": 1
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 2,
+    "fields": {
+      "question": 1,
+      "choice_text": "2-3년",
+      "style_points": 2
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 3,
+    "fields": {
+      "question": 1,
+      "choice_text": "1-2년",
+      "style_points": 3
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 4,
+    "fields": {
+      "question": 1,
+      "choice_text": "1년 미만",
+      "style_points": 4
+    }
+  },
+  {
+    "model": "investment_style.stylequestion",
+    "pk": 2,
+    "fields": {
+      "question_text": "투자의 주된 목표는 무엇입니까?"
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 5,
+    "fields": {
+      "question": 2,
+      "choice_text": "원금 보존과 안정적인 수익",
+      "style_points": 1
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 6,
+    "fields": {
+      "question": 2,
+      "choice_text": "적절한 수익과 위험의 균형",
+      "style_points": 2
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 7,
+    "fields": {
+      "question": 2,
+      "choice_text": "높은 수익 추구",
+      "style_points": 3
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 8,
+    "fields": {
+      "question": 2,
+      "choice_text": "매우 공격적인 자산 증식",
+      "style_points": 4
+    }
+  },
+  {
+    "model": "investment_style.stylequestion",
+    "pk": 3,
+    "fields": {
+      "question_text": "다음 중 당신의 수입원을 가장 잘 나타내고 있는 것은 어느 것입니까?"
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 9,
+    "fields": {
+      "question": 3,
+      "choice_text": "현재 안정적인 수입이 있으며, 향후 크게 증가할 것으로 예상",
+      "style_points": 1
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 10,
+    "fields": {
+      "question": 3,
+      "choice_text": "현재 일정한 수입이 발생하고 있으며, 향후 현재 수준을 유지하거나 약간 증가할 것으로 예상",
+      "style_points": 2
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 11,
+    "fields": {
+      "question": 3,
+      "choice_text": "현재 일정한 수입이 발생하고 있으나, 향후 감소하거나 불안정할 것으로 예상",
+      "style_points": 3
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 12,
+    "fields": {
+      "question": 3,
+      "choice_text": "현재 일정한 수입원이 없으며, 연금이나 저축이 주 수입원임",
+      "style_points": 4
+    }
+  },
+  {
+    "model": "investment_style.stylequestion",
+    "pk": 4,
+    "fields": {
+      "question_text": "주식 투자에 할애할 수 있는 자산 비중"
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 13,
+    "fields": {
+      "question": 4,
+      "choice_text": "10% 미만",
+      "style_points": 1
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 14,
+    "fields": {
+      "question": 4,
+      "choice_text": "10-30%",
+      "style_points": 2
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 15,
+    "fields": {
+      "question": 4,
+      "choice_text": "30-50%",
+      "style_points": 3
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 16,
+    "fields": {
+      "question": 4,
+      "choice_text": "50% 이상",
+      "style_points": 4
+    }
+  },
+  {
+    "model": "investment_style.stylequestion",
+    "pk": 5,
+    "fields": {
+      "question_text": "주식 가치가 30% 하락했을 때의 반응"
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 17,
+    "fields": {
+      "question": 5,
+      "choice_text": "즉시 모든 주식을 매도한다",
+      "style_points": 1
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 18,
+    "fields": {
+      "question": 5,
+      "choice_text": "일부를 매도하고 나머지는 보유한다",
+      "style_points": 2
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 19,
+    "fields": {
+      "question": 5,
+      "choice_text": "그대로 보유한다",
+      "style_points": 3
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 20,
+    "fields": {
+      "question": 5,
+      "choice_text": "추가 매수를 고려한다",
+      "style_points": 4
+    }
+  },
+  {
+    "model": "investment_style.stylequestion",
+    "pk": 6,
+    "fields": {
+      "question_text": "선호하는 투자 전략"
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 21,
+    "fields": {
+      "question": 6,
+      "choice_text": "안정적인 대형 우량주 위주",
+      "style_points": 1
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 22,
+    "fields": {
+      "question": 6,
+      "choice_text": "배당주 중심의 투자",
+      "style_points": 2
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 23,
+    "fields": {
+      "question": 6,
+      "choice_text": "성장 가능성이 있는 중소형주",
+      "style_points": 3
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 24,
+    "fields": {
+      "question": 6,
+      "choice_text": "신기술/신산업 관련 주식",
+      "style_points": 4
+    }
+  },
+  {
+    "model": "investment_style.stylequestion",
+    "pk": 7,
+    "fields": {
+      "question_text": "원금 손실에 대해 어떻게 생각하십니까?"
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 25,
+    "fields": {
+      "question": 7,
+      "choice_text": "어떤 경우에도 원금 손실은 받아들일 수 없다",
+      "style_points": 1
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 26,
+    "fields": {
+      "question": 7,
+      "choice_text": "5% 미만의 아주 작은 원금 손실은 감수할 수 있다",
+      "style_points": 2
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 27,
+    "fields": {
+      "question": 7,
+      "choice_text": "10-20% 정도의 원금 손실은 감수할 수 있다",
+      "style_points": 3
+    }
+  },
+  {
+    "model": "investment_style.stylechoice",
+    "pk": 28,
+    "fields": {
+      "question": 7,
+      "choice_text": "높은 수익을 위해 30% 이상의 상당한 원금 손실도 감수할 수 있다",
+      "style_points": 4
+    }
+  }
+]

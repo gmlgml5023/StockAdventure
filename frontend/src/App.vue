@@ -1,12 +1,15 @@
 <template>
   <div>
     <nav>
-      <template v-if="!store.isLogin">
-        <router-link to="/signup" class="nav-button">회원가입</router-link> ㅣ
-        <router-link to="/login" class="nav-button">로그인</router-link>
+      <template v-if="store.isLogin">
+        <button @click="logOut" class="nav-button">로그아웃</button>
+        <router-link to="/investment_style/test" class="nav-button"
+          >투자 성향 테스트</router-link
+        >
       </template>
       <template v-else>
-        <button @click="logOut" class="nav-button">로그아웃</button>
+        <router-link to="/signup" class="nav-button">회원가입</router-link> ㅣ
+        <router-link to="/login" class="nav-button">로그인</router-link>
       </template>
     </nav>
     <router-view></router-view>
@@ -14,14 +17,14 @@
 </template>
 
 <script setup>
-import { RouterView, RouterLink } from 'vue-router'
-import { useAuthStore } from '@/stores/auth'
+import { RouterView, RouterLink } from "vue-router";
+import { useAuthStore } from "@/stores/auth";
 
-const store = useAuthStore()
+const store = useAuthStore();
 
 const logOut = function () {
-  store.logOut()
-}
+  store.logOut();
+};
 </script>
 
 <style scoped>
