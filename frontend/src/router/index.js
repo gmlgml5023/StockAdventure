@@ -21,7 +21,7 @@ const router = createRouter({
   routes: [
     // stock
     { path: '/stocklist/', name: 'StockView', component: StockView },
-    
+
     // Community
     { path: "/articles/", name: "ArticleView", component: ArticleView },
     { path: "/articles/:article_id/", name: "ArticleDetailView", component: ArticleDetailView },
