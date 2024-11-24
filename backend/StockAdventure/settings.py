@@ -31,12 +31,14 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    # 프로젝트 커스텀 앱
     'accounts',
     'articles',
     'journals',
     'stocks',
     'investment_style',
 
+    # Django 기본 앱
     # DRF
     'rest_framework',
     'rest_framework.authtoken',
@@ -50,16 +52,20 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
 
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # 서드파티 앱
+    'rest_framework',
+    'corsheaders',
 ]
-
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -67,12 +73,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
+# 루트 URL 설정
 ROOT_URLCONF = 'StockAdventure.urls'
 
+# 템플릿 설정
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -88,6 +94,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'StockAdventure.wsgi.application'
 
@@ -145,6 +152,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 # DRF auth settings
 # Token 인증을 기본으로 사용하도록 설정
 REST_FRAMEWORK = {
@@ -156,13 +164,21 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
 }
 
 # 개발 환경 설정
 CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:8000',
     'http://localhost:5173',
     'http://127.0.0.1:5173',
 ]
+
+# 또는 개발 환경에서는 모든 도메인 허용
+CORS_ALLOW_ALL_ORIGINS = True
 
 # 추가 CORS 설정
 CORS_ALLOW_CREDENTIALS = True
