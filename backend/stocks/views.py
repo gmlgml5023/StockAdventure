@@ -22,7 +22,7 @@ def stock_list(request):
             'error': str(e)
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 def stock_update(request):
     try:
         # 데이터 처리 및 DB 저장

@@ -35,3 +35,5 @@ h1 {
 main {
   min-height: calc(100vh - 150px);
 }
+
+</style>

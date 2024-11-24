@@ -20,7 +20,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     // stock
-    { path: '/stocklist/', name: 'StockList', component: StockList }
+    { path: '/stocklist/', name: 'StockList', component: StockList },
     
     // Community
     { path: "/articles/", name: "ArticleView", component: ArticleView },
