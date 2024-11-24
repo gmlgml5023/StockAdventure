@@ -20,16 +20,16 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     // stock
-    { path: '/stocklist/', name: 'StockList', component: StockList }
+    { path: '/stocklist/', name: 'StockList', component: StockList },
     
     // Community
     { path: "/articles/", name: "ArticleView", component: ArticleView },
-    { path: "/articles/:article_id", name: "ArticleDetailView", component: ArticleDetailView },
+    { path: "/articles/:article_id/", name: "ArticleDetailView", component: ArticleDetailView },
     { path: "/create", name: "ArticleCreateView", component: ArticleCreateView },
     
     // Journal
     { path: "/journals/", name: "JournalView", component: JournalView },
-    { path: "/journals/:journal_id", name: "JournalDetailView", component: JournalDetailView },
+    { path: "/journals/:journal_id/", name: "JournalDetailView", component: JournalDetailView },
     { path: "/journals/create", name: "JournalCreateView", component: JournalCreateView },
   ]
 })

@@ -65,8 +65,8 @@ MIDDLEWARE = [
 
 # CORS 설정
 CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:5173',
-    'http://localhost:5173',
+    'https://127.0.0.1:8000/',
+    'https://localhost:5173',
 ]
 
 # 루트 URL 설정
@@ -147,8 +147,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS 추가 설정
 CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:8000',  # 마지막 슬래시(/) 제거
-    'http://localhost:5173',  # Vue 개발 서버
+    'http://127.0.0.1:8000',
+    'http://localhost:5173',
 ]
 
 # 또는 개발 환경에서는 모든 도메인 허용

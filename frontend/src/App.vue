@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>StockAdventure</h1>
     <nav>
       <RouterLink to="/stocklist/">주식정보조회</RouterLink> |
       <RouterLink to="/journals/">매매일지</RouterLink> |
@@ -35,3 +36,5 @@ h1 {
 main {
   min-height: calc(100vh - 150px);
 }
+
+</style>
