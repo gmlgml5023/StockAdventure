@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'accounts',
     'articles',
     'journals',
     'stocks',
@@ -49,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'accounts.apps.AccountsConfig',
 
 
     'django.contrib.admin',
@@ -172,3 +172,7 @@ SITE_ID = 1
 # 이미지 파일 관리
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+REST_AUTH = {
+    'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
+}

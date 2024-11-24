@@ -20,7 +20,7 @@ export const useAuthStore = defineStore(
 
     // 회원가입 요청 액션
     const signUp = function (payload) {
-      const { username, password1, password2 } = payload;
+      const { username, password1, password2, email, nickname } = payload;
 
       axios({
         method: "post",
@@ -29,6 +29,8 @@ export const useAuthStore = defineStore(
           username,
           password1,
           password2,
+          email,
+          nickname,
         },
       })
         .then((res) => {
