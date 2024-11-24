@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>홈화면</h2>
+    <h1>Stock Adventure</h1>
   </div>
 </template>
 
@@ -8,5 +8,4 @@
 </script>
 
 <style>
-
 </style>
