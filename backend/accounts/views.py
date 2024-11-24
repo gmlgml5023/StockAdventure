@@ -11,18 +11,17 @@ User = get_user_model()
 
 # 마이페이지 조회
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def get_user_profile(request, username):
     try:
         user = get_object_or_404(User, username=username)
         profile = UserProfile.objects.get(user=user)
         data = {
-            'username': user.username,
+            'username': profile.nickname or user.username,  # 닉네임이 있으면 닉네임을, 없으면 username을 표시
             'investment_style': profile.investment_style.get_style_id_display() if profile.investment_style else None,
-            'description': profile.description,
+            'resolution': profile.resolution,
             'nickname': profile.nickname,
-            'image':  f'character_{profile.investment_style.style_id}.png' if profile.investment_style else 'default.png'
-        }
+            'image': request.build_absolute_uri(f'/media/images/character_{profile.investment_style.style_id}.png') if profile.investment_style else request.build_absolute_uri('/media/images/default_character.png')        }
     
         return Response(data, status=status.HTTP_200_OK)
     except UserProfile.DoesNotExist:
@@ -32,35 +31,26 @@ def get_user_profile(request, username):
 
 # 회원정보 수정
 @api_view(['GET', 'PUT'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def update_profile(request, username):
     user = get_object_or_404(User, username=username)
+    profile = get_object_or_404(UserProfile, user=user)
+    
     if request.user != user:
         return Response({'error': '권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
     
     if request.method == 'GET':
-        serializer = ProfileSerializer(user)
+        serializer = ProfileSerializer(profile)
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        serializer = ProfileSerializer(user, data=request.data, partial=True)
+        serializer = ProfileSerializer(profile, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# 프로필 정보 조회 및 수정
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
-# def update_user(request, username):
-#     Users = get_object_or_404(User, username=username)
-#     if request.user == User:
-#         serializer = ProfileSerializer(instance=Users, data=request.data)
-#         if serializer.is_valid(raise_exception=True):
-#             serializer.save()
-#             serializer = ProfileSerializer(Users)
-#             return Response(serializer.data)
         
 # @api_view(['GET'])
 # @permission_classes([IsAuthenticated]) # 인증된 사용자만 권한 허용

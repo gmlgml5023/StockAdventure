@@ -7,6 +7,8 @@
       <div class="profile-info">
         <h2>{{ profile_username }}</h2>
         <p class="investment-style">{{ investmentStyle }}</p>
+        <p class="resolution" v-if="resolution">{{ resolution }}</p>
+        <p class="resolution" v-else>각오가 아직 작성되지 않았습니다.</p>
       </div>
       <button @click="editProfile" class="edit-button">회원정보 수정</button>
     </div>
@@ -21,10 +23,13 @@ import { useRouter } from "vue-router";
 
 const authStore = useAuthStore();
 const token = authStore.token;
+const router = useRouter();
+
 const profile_username = ref("");
 const investmentStyle = ref("");
 const characterImage = ref("");
-const router = useRouter();
+const nickname = ref("");
+const resolution = ref("");
 
 const props = defineProps({
   username: {
@@ -44,16 +49,34 @@ const fetchProfile = async () => {
       }
     );
     profile_username.value = response.data.username;
+    nickname.value = response.data.nickname;
     investmentStyle.value = response.data.investment_style;
-    characterImage.value = `/images/${response.data.character_image}`;
+    resolution.value = response.data.resolution;
+    // 투자 스타일 ID에 따라 캐릭터 이미지 설정
+    const styleId = response.data.image.split("_")[1].split(".")[0];
+    // characterImage.value = `/images/${getCharacterImage(parseInt(styleId))}`;
+    characterImage.value = response.data.image;
+
+    console.log("Server response:", response.data);
+    console.log("Style ID:", styleId);
+    console.log("Character Image:", characterImage.value);
   } catch (error) {
     console.error("프로필 로딩 실패:", error);
   }
 };
+// // 이미지 설정
+// const getCharacterImage = (styleId) => {
+//   const investmentStyles = {
+//     1: "character_stable.png",
+//     2: "character_neutral.png",
+//     3: "character_aggressive.png",
+//   };
+//   return investmentStyles[styleId] || "default_character.png";
+// };
 
 const editProfile = () => {
   // 회원정보 수정 페이지로 이동
-  router.push(`/accounts/${props.username}/update/`);
+  router.push(`/accounts/${props.username}/update`);
 };
 
 onMounted(() => {
@@ -92,6 +115,13 @@ onMounted(() => {
 .investment-style {
   color: #666;
   margin-top: 8px;
+}
+
+.resolution {
+  color: #666;
+  margin-top: 8px;
+  font-size: 0.9em;
+  line-height: 1.4;
 }
 
 .edit-button {

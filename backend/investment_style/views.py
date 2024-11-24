@@ -60,12 +60,16 @@ def calculate_investment_style(request):
         # request.session['investment_style_id'] = investment_style.style_id            
         
         # return redirect('investment_style:investment_result')
+        # 캐릭터 이미지 파일명 생성
+        character_image = f'character_{investment_style.style_id}.png'
+        
         return Response({
-            'total_score': total_score,
-            'investment_style_id': investment_style.style_id,
-            'investment_style_name': investment_style.get_style_id_display()
+        'total_score': total_score,
+        'investment_style_id': investment_style.style_id,
+        'investment_style_name': investment_style.get_style_id_display(),
+        'image': request.build_absolute_uri(f'/media/images/{character_image}')
         }, status=status.HTTP_200_OK)
-    
+                
     else:
         questions = StyleQuestion.objects.all()
         return Response([{

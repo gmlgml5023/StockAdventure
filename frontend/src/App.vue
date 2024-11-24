@@ -6,6 +6,9 @@
         <router-link to="/investment_style/test" class="nav-button"
           >투자 성향 테스트</router-link
         >
+        <router-link to="/account/:username" class="nav-button"
+          >유저 프로필</router-link
+        >
       </template>
       <template v-else>
         <router-link to="/signup" class="nav-button">회원가입</router-link> ㅣ

@@ -11,9 +11,9 @@ class UserProfile(models.Model):
         blank=True,
         verbose_name='투자 성향'
     )
-    description = models.TextField(blank=True)
+    resolution = models.TextField(blank=True, default="주식 투자로 부자되기")
     nickname = models.CharField(max_length=40, blank=True)
-    image = models.ImageField(blank=True)
+    image = models.ImageField(upload_to='images/', default='images/default_character.png')
     
     def __str__(self):
         return f"{self.user.username}의 프로필"
