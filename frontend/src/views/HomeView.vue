@@ -4,12 +4,6 @@
   </div>
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<template>
-  <main>
-    <h1>홈 페이지</h1>
-  </main>
-</template>
+<style scoped></style>

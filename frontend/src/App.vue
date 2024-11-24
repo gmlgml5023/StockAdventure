@@ -2,7 +2,7 @@
   <div id="app">
     <h1>StockAdventure</h1>
     <nav>
-       <template v-if="store.isLogin">
+      <template v-if="store.isLogin">
         <button @click="logOut" class="nav-button">로그아웃</button>
         <router-link to="/investment_style/test" class="nav-button"
           >투자 성향 테스트</router-link
@@ -57,8 +57,6 @@ main {
   min-height: calc(100vh - 150px);
 }
 
-</style>
-=======
 nav {
   padding: 20px;
   text-align: center;
