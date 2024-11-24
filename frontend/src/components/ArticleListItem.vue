@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h5>글번호 : {{ article.id }}</h5>
+    <p>글번호 : {{ article.id }}</p>
     <p>제목 : {{ article.title }}</p>
 
     <RouterLink

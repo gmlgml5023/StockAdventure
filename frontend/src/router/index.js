@@ -21,7 +21,7 @@ const router = createRouter({
     // Community
     { path: "/articles/", name: "ArticleView", component: ArticleView },
     { path: "/articles/:article_id", name: "ArticleDetailView", component: ArticleDetailView },
-    { path: "/create", name: "ArticleCreateView", component: ArticleCreateView }
+    { path: "/create", name: "ArticleCreateView", component: ArticleCreateView },
     
     // Journal
     { path: "/journals/", name: "JournalView", component: JournalView },

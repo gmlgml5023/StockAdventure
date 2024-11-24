@@ -1,12 +1,11 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-  <nav>
-    <RouterLink to="/">Home</RouterLink> |
-    <RouterLink to="/journals/">매매일지</RouterLink>
-  </nav>
-  <h1>Stock Adventure</h1>
-  <RouterView />
+    <nav>
+      <RouterLink to="/">Home</RouterLink> |
+      <RouterLink to="/journals/">매매일지</RouterLink> |
+      <RouterLink to="/articles/">커뮤니티</RouterLink>
+    </nav>
+    <router-view/>
   </div>
 </template>
 
