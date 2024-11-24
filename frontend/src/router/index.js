@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router"
 import HomeView from "@/views/HomeView.vue"
 
 // Stock
-import StockList from '@/views/StockList.vue'
+import StockView from '@/views/StockView.vue'
 
 // Community
 import ArticleView from "@/views/ArticleView.vue"
@@ -20,7 +20,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     // stock
-    { path: '/stocklist/', name: 'StockList', component: StockList },
+    { path: '/stocklist/', name: 'StockView', component: StockView },
     
     // Community
     { path: "/articles/", name: "ArticleView", component: ArticleView },

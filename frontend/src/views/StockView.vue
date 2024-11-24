@@ -2,6 +2,7 @@
 <template>
   <div class="stock-container">
     <h2>주식 종목 목록</h2>
+    <StockUpdateButton />
     <div v-if="!stockStore.stocks.length" class="loading-message">
       주식 데이터를 불러오는 중입니다...
     </div>
@@ -16,6 +17,7 @@
 import { onMounted } from 'vue'
 import { useStockStore } from '@/stores/stock'
 import StockTable from '@/components/StockTable.vue'
+import StockUpdateButton from '@/components/StockUpdateButton.vue'
 
 const stockStore = useStockStore()
 
