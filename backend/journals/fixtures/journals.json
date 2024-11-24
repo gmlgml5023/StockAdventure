@@ -1,0 +1,132 @@
+[
+    {
+        "model": "journals.journal",
+        "pk": 1,
+        "fields": {
+            "stock_name": "네이버",
+            "transaction_date": "2024-07-26",
+            "buysell": "매수",
+            "quantity": 64,
+            "price": 321326,
+            "reason": "Sample reason for trade.",
+            "feedback": "Sample feedback after trade."
+        }
+    },
+    {
+        "model": "journals.journal",
+        "pk": 2,
+        "fields": {
+            "stock_name": "삼성전자",
+            "transaction_date": "2024-07-08",
+            "buysell": "매수",
+            "quantity": 100,
+            "price": 633913,
+            "reason": "Sample reason for trade.",
+            "feedback": "Sample feedback after trade."
+        }
+    },
+    {
+        "model": "journals.journal",
+        "pk": 3,
+        "fields": {
+            "stock_name": "카카오",
+            "transaction_date": "2023-12-26",
+            "buysell": "매도",
+            "quantity": 79,
+            "price": 22367,
+            "reason": "Sample reason for trade.",
+            "feedback": "Sample feedback after trade."
+        }
+    },
+    {
+        "model": "journals.journal",
+        "pk": 4,
+        "fields": {
+            "stock_name": "네이버",
+            "transaction_date": "2024-03-19",
+            "buysell": "매수",
+            "quantity": 27,
+            "price": 678659,
+            "reason": "Sample reason for trade.",
+            "feedback": "Sample feedback after trade."
+        }
+    },
+    {
+        "model": "journals.journal",
+        "pk": 5,
+        "fields": {
+            "stock_name": "네이버",
+            "transaction_date": "2024-10-23",
+            "buysell": "매도",
+            "quantity": 45,
+            "price": 857335,
+            "reason": "Sample reason for trade.",
+            "feedback": "Sample feedback after trade."
+        }
+    },
+    {
+        "model": "journals.journal",
+        "pk": 6,
+        "fields": {
+            "stock_name": "네이버",
+            "transaction_date": "2024-08-09",
+            "buysell": "매도",
+            "quantity": 58,
+            "price": 601755,
+            "reason": "Sample reason for trade.",
+            "feedback": "Sample feedback after trade."
+        }
+    },
+    {
+        "model": "journals.journal",
+        "pk": 7,
+        "fields": {
+            "stock_name": "카카오",
+            "transaction_date": "2024-09-09",
+            "buysell": "매도",
+            "quantity": 14,
+            "price": 853910,
+            "reason": "Sample reason for trade.",
+            "feedback": "Sample feedback after trade."
+        }
+    },
+    {
+        "model": "journals.journal",
+        "pk": 8,
+        "fields": {
+            "stock_name": "LG화학",
+            "transaction_date": "2024-01-21",
+            "buysell": "매도",
+            "quantity": 89,
+            "price": 787364,
+            "reason": "Sample reason for trade.",
+            "feedback": "Sample feedback after trade."
+        }
+    },
+    {
+        "model": "journals.journal",
+        "pk": 9,
+        "fields": {
+            "stock_name": "네이버",
+            "transaction_date": "2024-02-14",
+            "buysell": "매도",
+            "quantity": 81,
+            "price": 689325,
+            "reason": "Sample reason for trade.",
+            "feedback": "Sample feedback after trade."
+        }
+    },
+    {
+        "model": "journals.journal",
+        "pk": 10,
+        "fields": {
+            "stock_name": "네이버",
+            "transaction_date": "2024-05-12",
+            "buysell": "매도",
+            "quantity": 17,
+            "price": 11817,
+            "reason": "Sample reason for trade.",
+            "feedback": "Sample feedback after trade."
+        }
+    }
+]
