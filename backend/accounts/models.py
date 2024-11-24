@@ -17,3 +17,11 @@ class UserProfile(models.Model):
     
     def __str__(self):
         return f"{self.user.username}의 프로필"
+    
+    # UserProfile이 존재하지 않을 경우 새로 생성
+    @classmethod
+    def get_or_create(cls, user):
+        try:
+            return cls.objects.get(user=user)
+        except cls.DoesNotExist:
+            return cls.objects.create(user=user)

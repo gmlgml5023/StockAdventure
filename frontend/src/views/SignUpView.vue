@@ -5,12 +5,6 @@
       <label for="username">사용자명: </label>
       <input type="text" id="username" v-model.trim="username" /><br />
 
-      <label for="email">이메일: </label>
-      <input type="email" id="email" v-model.trim="email" /><br />
-
-      <label for="nickname">닉네임: </label>
-      <input type="text" id="nickname" v-model.trim="nickname" /><br />
-
       <label for="password1">비밀번호: </label>
       <input type="password" id="password1" v-model.trim="password1" /><br />
 
@@ -27,8 +21,6 @@ import { ref } from "vue";
 import { useAuthStore } from "@/stores/auth";
 
 const username = ref(null);
-const email = ref(null);
-const nickname = ref(null);
 const password1 = ref(null);
 const password2 = ref(null);
 
@@ -38,8 +30,6 @@ const signUp = async function () {
   try {
     const payload = {
       username: username.value,
-      email: email.value,
-      nickname: nickname.value,
       password1: password1.value,
       password2: password2.value,
     };

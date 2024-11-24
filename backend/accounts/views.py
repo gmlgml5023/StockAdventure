@@ -11,11 +11,11 @@ User = get_user_model()
 
 # 마이페이지 조회
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def get_user_profile(request, username):
     try:
         user = get_object_or_404(User, username=username)
-        profile = UserProfile.objects.get(user=user)
+        profile, created = UserProfile.objects.get_or_create(user=user)
         data = {
             'username': profile.nickname or user.username,  # 닉네임이 있으면 닉네임을, 없으면 username을 표시
             'investment_style': profile.investment_style.get_style_id_display() if profile.investment_style else None,
@@ -31,12 +31,12 @@ def get_user_profile(request, username):
 
 # 회원정보 수정
 @api_view(['GET', 'PUT'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def update_profile(request, username):
     user = get_object_or_404(User, username=username)
     profile = get_object_or_404(UserProfile, user=user)
     
-    if request.user != user:
+    if request.user.username != username:
         return Response({'error': '권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
     
     if request.method == 'GET':
