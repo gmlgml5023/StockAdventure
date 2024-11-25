@@ -1,0 +1,90 @@
+/* Import fonts */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap");
+
+@font-face {
+  font-family: "arita-dotum-Medium";
+  src: url("@/assets/fonts/arita-dotum-Medium.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "arita-dotum-Medium", sans-serif;
+}
+
+body {
+  background-color: #090a1e; /* Updated background color */
+  color: #ffffff;
+  font-family: "arita-dotum-Medium", sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Gothic font for numbers */
+.number {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #f0db37; /* Updated accent color */
+  text-shadow: 0 0 10px rgba(240, 219, 55, 0.5); /* Adjusted glow effect */
+}
+
+a {
+  color: #f0db37;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffffff; /* Changed hover color to white for contrast */
+  text-shadow: 0 0 5px #f0db37;
+}
+
+button {
+  background-color: transparent;
+  border: 2px solid #f0db37;
+  color: #f0db37;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "arita-dotum-Medium", sans-serif;
+}
+
+button:hover {
+  background-color: rgba(240, 219, 55, 0.2);
+  box-shadow: 0 0 15px #f0db37;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+  background-color: #1a1a4a;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input,
+textarea,
+select {
+  font-family: "arita-dotum-Medium", sans-serif;
+}
