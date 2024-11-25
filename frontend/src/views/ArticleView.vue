@@ -1,16 +1,15 @@
 <template>
   <div>
-    <h1>커뮤니티</h1>
-    <RouterLink :to="{ name: 'ArticleCreateView' }">Create</RouterLink>
+    <h2>커뮤니티</h2>
+    <RouterLink :to="{ name: 'ArticleCreateView' }" class="create-button">Create</RouterLink>
     <ArticleList />
   </div>
 </template>
 
 <script setup>
-import ArticleList from "@/components/ArticleList.vue";
 import { onMounted } from "vue";
 import { useArticleStore } from "@/stores/article";
-import { RouterLink } from "vue-router";
+import ArticleList from "@/components/ArticleList.vue";
 
 const store = useArticleStore();
 
@@ -20,4 +19,10 @@ onMounted(() => {
 });
 </script>
 
-<style></style>
+
+<style>
+.create-button:hover {
+  background-color: #3aa876;
+}
+</style>
+

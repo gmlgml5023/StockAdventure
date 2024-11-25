@@ -1,11 +1,7 @@
 <template>
   <div>
-    <div class="journal-header">
-      <RouterLink :to="{ name: 'JournalCreateView' }" class="create-button">
-        매매일지 작성
-      </RouterLink>
-    </div>
     <h2>매매일지 목록</h2>
+    <RouterLink :to="{ name: 'JournalCreateView' }" class="create-button">매매일지 작성</RouterLink>
     <JournalList />
   </div>
 </template>
@@ -24,10 +20,6 @@ onMounted(() => {
 </script>
 
 <style>
-.journal-header {
-  margin-bottom: 20px;
-}
-
 .create-button:hover {
   background-color: #3aa876;
 }
