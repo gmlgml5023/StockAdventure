@@ -24,6 +24,7 @@
 <script setup>
 import { ref } from "vue";
 import { useArticleStore } from "@/stores/article";
+import { useAuthStore } from "@/stores/auth";
 import { useRouter } from "vue-router";
 
 const props = defineProps({
@@ -34,7 +35,8 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["update-complete", "cancel"]);
-const store = useArticleStore();
+const articleStore = useArticleStore();
+const authStore = useAuthStore();
 const router = useRouter();
 const formData = ref({
   title: props.article.title,
@@ -42,12 +44,17 @@ const formData = ref({
 });
 
 const handleSubmit = async () => {
+  // 작성자 확인
+  if (!authStore.isAuthor(props.article.username)) {
+    alert("게시글 수정 권한이 없습니다.");
+    return;
+  }
+
   if (confirm("게시글을 수정하시겠습니까?")) {
     try {
-      await store.updateArticle(props.article.id, formData.value);
+      await articleStore.updateArticle(props.article.id, formData.value);
       emit("update-complete");
 
-      // 상세 페이지로 리다이렉션 후 알림창 표시
       router
         .push({
           name: "ArticleDetailView",

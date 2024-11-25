@@ -3,14 +3,18 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
-export const useAuthStore = defineStore(
-  "auth",
-  () => {
+export const useAuthStore = defineStore('auth', () => {
     const API_URL = "http://127.0.0.1:8000";
     const token = ref(null);
     const username = ref(null); // 사용자 이름 상태 추가
     const isLogin = computed(() => !!token.value);
     const router = useRouter();
+
+    // isAuthor 함수 정의 추가
+    const isAuthor = (articleUsername) => {
+      return username.value === articleUsername;
+    };
+
 
     // 회원가입 요청 액션
     const signUp = function (payload) {
@@ -63,15 +67,26 @@ export const useAuthStore = defineStore(
       })
       .then(() => {
         token.value = null;
-        username.value = null; // 로그아웃 시 사용자 이름 초기화
-        router.push({ name: "home" });
+        username.value = null;
+        router.push({ name: "intro" }); // 로그아웃 후 intro 페이지로 리다이렉트
       })
       .catch((err) => {
         console.error('로그아웃 실패:', err);
       });
     };
 
-    return { API_URL, signUp, logIn, token, isLogin, logOut, username };
-  },
-  { persist: true }
-);
+    return { 
+        API_URL, 
+        signUp, 
+        logIn, 
+        token, 
+        isLogin, 
+        logOut, 
+        username,
+        isAuthor  // isAuthor 함수 추가
+    };
+}, {
+    persist: {
+        storage: sessionStorage
+    }
+});
