@@ -1,0 +1,23 @@
+[
+  {
+    "model": "investment_style.investmentstyle",
+    "fields": {
+      "style_id": 1,
+      "name": "안정형 투자자"
+    }
+  },
+  {
+    "model": "investment_style.investmentstyle",
+    "fields": {
+      "style_id": 2,
+      "name": "위험중립형 투자자"
+    }
+  },
+  {
+    "model": "investment_style.investmentstyle",
+    "fields": {
+      "style_id": 3,
+      "name": "공격투자형 투자자"
+    }
+  }
+]
