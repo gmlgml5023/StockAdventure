@@ -1,0 +1,35 @@
+[
+{
+    "model": "accounts.userprofile",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "investment_style": null,
+        "resolution": "주식 투자로 부자되기",
+        "nickname": "",
+        "image": "images/default_character.png"
+    }
+},
+{
+    "model": "accounts.userprofile",
+    "pk": 2,
+    "fields": {
+        "user": 2,
+        "investment_style": null,
+        "resolution": "주식 투자로 부자되기",
+        "nickname": "",
+        "image": "images/default_character.png"
+    }
+},
+{
+    "model": "accounts.userprofile",
+    "pk": 3,
+    "fields": {
+        "user": 3,
+        "investment_style": null,
+        "resolution": "주식 투자로 부자되기",
+        "nickname": "",
+        "image": "images/default_character.png"
+    }
+}
+]
