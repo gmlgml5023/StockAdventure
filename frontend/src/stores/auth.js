@@ -10,6 +10,12 @@ export const useAuthStore = defineStore('auth', () => {
     const isLogin = computed(() => !!token.value);
     const router = useRouter();
 
+    // isAuthor 함수 정의 추가
+    const isAuthor = (articleUsername) => {
+      return username.value === articleUsername;
+    };
+
+
     // 회원가입 요청 액션
     const signUp = function (payload) {
       const { username, password1, password2 } = payload;
@@ -69,9 +75,18 @@ export const useAuthStore = defineStore('auth', () => {
       });
     };
 
-    return { API_URL, signUp, logIn, token, isLogin, logOut, username };
-  }, {
+    return { 
+        API_URL, 
+        signUp, 
+        logIn, 
+        token, 
+        isLogin, 
+        logOut, 
+        username,
+        isAuthor  // isAuthor 함수 추가
+    };
+}, {
     persist: {
-      storage: sessionStorage // 브라우저 탭을 닫으면 로그아웃
+        storage: sessionStorage
     }
-  });
+});
