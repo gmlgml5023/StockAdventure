@@ -2,6 +2,10 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import get_object_or_404
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+
 from .utils import StockDataProcessor
 from .models import Stock
 import pandas as pd
@@ -74,3 +78,20 @@ def stock_update(request):
         return Response({
             'error': str(e)
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+def stock_like(request, stock_id):
+    stock = get_object_or_404(Stock, stock_id=stock_id)
+    
+    if stock.likes.filter(pk=request.user.pk).exists():
+        stock.likes.remove(request.user)
+        is_liked = False
+    else:
+        stock.likes.add(request.user)
+        is_liked = True
+    
+    return Response({
+        'is_liked': is_liked,
+        'like_count': stock.likes.count()
+    })
