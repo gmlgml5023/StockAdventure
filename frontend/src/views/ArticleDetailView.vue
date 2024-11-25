@@ -9,7 +9,8 @@
         <p>작성일 : {{ article.created_at }}</p>
         <p>수정일 : {{ article.updated_at }}</p>
         
-        <div class="button-group">
+        <!-- 작성자와 현재 로그인한 사용자가 같은 경우에만 버튼 그룹 표시 -->
+        <div class="button-group" v-if="authStore.username === article.username">
           <button @click="isEditing = true">수정</button>
           <ArticleDeleteButton 
             :article-id="article.id"
@@ -19,7 +20,7 @@
       </div>
 
       <ArticleUpdateForm
-        v-else
+        v-else-if="authStore.username === article.username"
         :article="article"
         @update-complete="handleUpdateComplete"
         @cancel="isEditing = false"
@@ -31,12 +32,14 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useArticleStore } from '@/stores/article'
+import { useAuthStore } from '@/stores/auth'  // auth store import 추가
 import { useRoute } from 'vue-router'
 import ArticleUpdateForm from '@/components/ArticleUpdateForm.vue'
 import ArticleDeleteButton from '@/components/ArticleDeleteButton.vue'
 import axios from 'axios'
 
-const store = useArticleStore()
+const articleStore = useArticleStore()
+const authStore = useAuthStore()  // auth store 사용
 const route = useRoute()
 const article = ref(null)
 const isEditing = ref(false)
@@ -48,7 +51,12 @@ onMounted(() => {
 const fetchArticle = async () => {
   try {
     const response = await axios.get(
-      `${store.API_URL}/articles/${route.params.article_id}/`
+      `${articleStore.API_URL}/articles/${route.params.article_id}/`,
+      {
+        headers: {
+          Authorization: `Token ${authStore.token}`  // 토큰 추가
+        }
+      }
     )
     article.value = response.data
   } catch (error) {
