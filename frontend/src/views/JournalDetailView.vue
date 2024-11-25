@@ -38,29 +38,40 @@ import { useRoute } from 'vue-router'
 import JournalUpdateForm from '@/components/JournalUpdateForm.vue'
 import JournalDeleteButton from '@/components/JournalDeleteButton.vue'
 import axios from 'axios'
+import { useAuthStore } from '@/stores/auth'
 
-const store = useJournalStore()
+const journalstore = useJournalStore()
 const route = useRoute()
 const journal = ref(null)
 const isEditing = ref(false)
-
-onMounted(() => {
-  fetchJournal()
-})
+const authStore = useAuthStore()
 
 const fetchJournal = async () => {
   try {
     const response = await axios.get(
-      `${store.API_URL}/journals/${route.params.journal_id}/`
-    )
+      `${journalstore.API_URL}/journals/${route.params.journal_id}/`, {
+      headers: {
+        'Authorization': `Token ${authStore.token}` // 인증 토큰 추가
+      }
+  })
     journal.value = response.data
   } catch (error) {
     console.error('매매일지 로딩 실패:', error)
+    console.log(authStore.token)
   }
 }
 
+onMounted(() => {
+  const journalId = route.params.journal_id
+  if (journalId) {
+    fetchJournal(journalId)
+  } else {
+    console.error('Journal ID not found in route params')
+  }
+})
+
 const handleUpdateComplete = async () => {
-  await fetchJournal()
+  await fetchJournal(route.params.journal_id)
   isEditing.value = false
 }
 

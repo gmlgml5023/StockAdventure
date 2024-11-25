@@ -10,7 +10,10 @@ class JournalListSerializer(serializers.ModelSerializer):
 
 # 단일 매매일지
 class JournalSerializer(serializers.ModelSerializer):
+    username = serializers.ReadOnlyField(source='user.username')
+
     class Meta:
         model = Journal
         fields = '__all__'
-        
+        read_only_fields = ('user',)
+

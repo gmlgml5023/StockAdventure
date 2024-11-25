@@ -6,6 +6,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .models import UserProfile
 from .serializers import ProfileSerializer
+from journals.serializers import JournalListSerializer
+from journals.models import Journal
 
 User = get_user_model()
 
@@ -52,19 +54,10 @@ def update_profile(request, username):
 
 
         
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated]) # 인증된 사용자만 권한 허용
-# def user_movie_list(request, user_pk):
-#     Users = get_object_or_404(User, pk=user_pk)
-#     serializer = UserMovieListSerializer(Users)
-#     user_list = {
-#         'id' : serializer.data.get('id'),
-#         'user_rated_movie_count' : Users.user_rated_movie.count(),
-#         'user_rated_movie' : serializer.data.get('user_rated_movie'),
-#         'like_movies_count' : Users.like_movies.count(),
-#         'like_movies' : serializer.data.get('like_movies'),
-#         'wish_moives_count' : Users.wish_moives.count(),
-#         'wish_moives' : serializer.data.get('wish_moives'),
-#     }
-    # return JsonResponse(user_list)        
-# 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated]) # 인증된 사용자만 권한 허용
+def user_journal_list(request, username):
+    user = get_object_or_404(User, username=username)
+    journals = Journal.objects.filter(user=user)
+    serializer = JournalListSerializer(journals, many=True)
+    return Response(serializer.data)   

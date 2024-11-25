@@ -10,7 +10,12 @@
         <p class="resolution" v-if="resolution">{{ resolution }}</p>
         <p class="resolution" v-else>각오가 아직 작성되지 않았습니다.</p>
       </div>
-      <button @click="editProfile" class="edit-button">회원정보 수정</button>
+      <div class="button-group">
+        <button @click="editProfile" class="edit-button">회원정보 수정</button>
+        <router-link :to="{ name: 'user-journal', params: { username: props.username } }" class="journal-button">
+          매매일지 목록
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -24,6 +29,7 @@ import { useRouter } from "vue-router";
 const authStore = useAuthStore();
 const token = authStore.token;
 const router = useRouter();
+
 
 const profile_username = ref("");
 const investmentStyle = ref("");
@@ -64,19 +70,15 @@ const fetchProfile = async () => {
     console.error("프로필 로딩 실패:", error);
   }
 };
-// // 이미지 설정
-// const getCharacterImage = (styleId) => {
-//   const investmentStyles = {
-//     1: "character_stable.png",
-//     2: "character_neutral.png",
-//     3: "character_aggressive.png",
-//   };
-//   return investmentStyles[styleId] || "default_character.png";
-// };
 
 const editProfile = () => {
   // 회원정보 수정 페이지로 이동
   router.push(`/accounts/${props.username}/update`);
+};
+
+const goToJournalList = () => {
+  // 매매일지 목록 페이지로 이동
+  router.push('/journals/');
 };
 
 onMounted(() => {
@@ -124,12 +126,27 @@ onMounted(() => {
   line-height: 1.4;
 }
 
-.edit-button {
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-button,
+.journal-button {
   padding: 10px 20px;
-  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 100%;
+}
+
+.edit-button {
+  background-color: #4caf50;
+}
+
+.journal-button {
+  background-color: #2196F3;
 }
 </style>

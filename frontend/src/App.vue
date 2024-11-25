@@ -17,10 +17,10 @@
 import { RouterView, RouterLink } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 
-const store = useAuthStore();
+const authStore = useAuthStore();
 
 const logOut = () => {
-  store.logOut();
+  authStore.logOut();
 };
 </script>
 
