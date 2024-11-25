@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useAuthStore } from "@/stores/auth";
 import HomeView from "@/views/HomeView.vue";
-
-// Stock
-import StockView from '@/views/StockView.vue';
+import IntroView from "@/views/IntroView.vue";
 
 // Community
 import ArticleView from "@/views/ArticleView.vue";
@@ -25,31 +24,45 @@ import UpdateProfileView from "@/views/UpdateProfileView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // Home
-    { path: "/", name: "home", component: HomeView },
-
-    // Stock
-    { path: '/stocklist/', name: 'StockView', component: StockView },
+    { path: "/", name: "home", component: HomeView, meta: { requiresAuth: true } },
+    { path: "/intro", name: "intro", component: IntroView },
 
     // Community
-    { path: "/articles/", name: "ArticleView", component: ArticleView },
-    { path: "/articles/:article_id/", name: "ArticleDetailView", component: ArticleDetailView },
-    { path: "/create", name: "ArticleCreateView", component: ArticleCreateView },
+    { path: "/articles/", name: "ArticleView", component: ArticleView, meta: { requiresAuth: true } },
+    { path: "/articles/:article_id/", name: "ArticleDetailView", component: ArticleDetailView, meta: { requiresAuth: true } },
+    { path: "/create", name: "ArticleCreateView", component: ArticleCreateView, meta: { requiresAuth: true } },
     
     // Journal
-    { path: "/journals/", name: "JournalView", component: JournalView },
-    { path: "/journals/:journal_id/", name: "JournalDetailView", component: JournalDetailView },
-    { path: "/journals/create", name: "JournalCreateView", component: JournalCreateView },
+    { path: "/journals/", name: "JournalView", component: JournalView, meta: { requiresAuth: true } },
+    { path: "/journals/:journal_id/", name: "JournalDetailView", component: JournalDetailView, meta: { requiresAuth: true } },
+    { path: "/journals/create", name: "JournalCreateView", component: JournalCreateView, meta: { requiresAuth: true } },
 
     // User Management & Test
     { path: "/signup/", name: "signup", component: SignupView },
     { path: "/login/", name: "login", component: LogInView },
-    { path: "/investment_style/test/", name: "investment-test", component: InvestmentTestView },
-    { path: "/investment_style/result/", name: "investment-result", component: InvestmentResultView },
-    { path: "/accounts/:username/", name: "user-profile", component: UserProfileView, props: true },
-    { path: "/accounts/:username/update/", name: "update-profile", component: UpdateProfileView, props: true },
-
-  ],
+    { path: "/investment_style/test/", name: "investment-test", component: InvestmentTestView, meta: { requiresAuth: true } },
+    { path: "/investment_style/result/", name: "investment-result", component: InvestmentResultView, meta: { requiresAuth: true } },
+    { path: "/accounts/:username/", name: "user-profile", component: UserProfileView, props: true, meta: { requiresAuth: true } },
+    { path: "/accounts/:username/update/", name: "update-profile", component: UpdateProfileView, props: true, meta: { requiresAuth: true } },
+  ]
 });
 
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  const isAuthenticated = authStore.isLogin;
+
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    if (to.path === '/') {
+      next({ name: 'intro' });
+    } else {
+      next({ name: 'login', query: { redirect: to.fullPath } });
+    }
+  } else if ((to.name === 'login' || to.name === 'signup') && isAuthenticated) {
+    next({ name: 'home' });
+  } else if (to.name === 'intro' && isAuthenticated) {
+    next({ name: 'home' }); // 로그인 상태에서 intro 페이지 접근 시 홈으로 리다이렉트
+  } else {
+    next();
+  }
+});
 export default router;

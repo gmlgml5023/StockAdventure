@@ -1,21 +1,13 @@
 <template>
   <div id="app" class="app">
-    <h1>StockAdventure</h1>
-    <nav>
-      <template v-if="store.isLogin">
-        <button @click="logOut" class="nav-button">로그아웃</button>
-        <RouterLink to="/investment_style/test" class="nav-button">투자 성향 테스트</RouterLink>
-        <!-- username이 정의되어 있을 때만 유저 프로필 링크를 렌더링 -->
-        <RouterLink v-if="store.username" :to="{ name: 'user-profile', params: { username: store.username } }" class="nav-button">유저 프로필</RouterLink>
-        <RouterLink to="/stocklist/" class="nav-button">주식정보조회</RouterLink>
-        <RouterLink to="/journals/" class="nav-button">매매일지</RouterLink>
-        <RouterLink to="/articles/" class="nav-button">커뮤니티</RouterLink>
-      </template>
-      <template v-else>
-        <RouterLink to="/signup" class="nav-button">회원가입</RouterLink>
-        <span>ㅣ</span>
-        <RouterLink to="/login" class="nav-button">로그인</RouterLink>
-      </template>
+    <a href="http://localhost:5173/"><h1>StockAdventure</h1></a>
+    <nav v-if="store.isLogin">
+      <RouterLink to="/" class="nav-button">주식정보조회</RouterLink>
+      <RouterLink to="/journals/" class="nav-button">매매일지</RouterLink>
+      <RouterLink to="/articles/" class="nav-button">커뮤니티</RouterLink>
+      <RouterLink to="/investment_style/test" class="nav-button">투자 성향 테스트</RouterLink>
+      <RouterLink v-if="store.username" :to="{ name: 'user-profile', params: { username: store.username } }" class="nav-button">유저 프로필</RouterLink>
+      <button @click="logOut" class="nav-button">로그아웃</button>
     </nav>
     <RouterView />
   </div>
