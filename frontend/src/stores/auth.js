@@ -8,78 +8,70 @@ export const useAuthStore = defineStore(
   () => {
     const API_URL = "http://127.0.0.1:8000";
     const token = ref(null);
-    const isLogin = computed(() => {
-      console.log(token.value);
-      if (token.value) {
-        return true;
-      } else {
-        return false;
-      }
-    });
+    const username = ref(null); // 사용자 이름 상태 추가
+    const isLogin = computed(() => !!token.value);
     const router = useRouter();
 
     // 회원가입 요청 액션
     const signUp = function (payload) {
       const { username, password1, password2 } = payload;
-
       axios({
-        method: "post",
+        method: 'post',
         url: `${API_URL}/accounts/signup/`,
-        data: {
-          username,
-          password1,
-          password2,
-        },
+        data: { username, password1, password2 }
       })
-        .then((res) => {
-          // console.log(res)
-          // console.log('회원가입 성공')
-          const password = password1;
-          logIn({ username, password });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      .then(() => {
+        logIn({ username, password: password1 });
+      })
+      .catch((err) => {
+        console.error('회원가입 실패:', err);
+      });
     };
+
     // 로그인 요청 액션
     const logIn = function (payload) {
-      const { username, password } = payload;
-
+      const { username: loginUsername, password } = payload;
       axios({
-        method: "post",
+        method: 'post',
         url: `${API_URL}/accounts/login/`,
-        data: {
-          username,
-          password,
-        },
+        data: { username: loginUsername, password }
       })
-        .then((res) => {
-          token.value = res.data.key; // 로그인 시 token을 local storage에 저장
-          router.push({ name: "home" }); // 로그인 시 router 중 name이 home인 view를 보여준다
-          // console.log(res.data)
-          // console.log('로그인 성공')
-        })
-        .catch((err) => {
-          console.log(err);
+      .then((res) => {
+        token.value = res.data.key;
+
+        return axios({
+          method: 'get',
+          url: `${API_URL}/accounts/user/`,
+          headers: { Authorization: `Token ${token.value}` }
         });
+      })
+      .then((userRes) => {
+        username.value = userRes.data.username; // 서버로부터 받은 사용자 이름 저장
+        router.push({ name: "home" });
+      })
+      .catch((err) => {
+        console.error('로그인 실패:', err);
+      });
     };
 
     // 로그아웃
     const logOut = function () {
       axios({
-        method: "post",
+        method: 'post',
         url: `${API_URL}/accounts/logout/`,
+        headers: { Authorization: `Token ${token.value}` }
       })
-        .then((res) => {
-          console.log(res.data);
-          token.value = null;
-          router.push({ name: "home" });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      .then(() => {
+        token.value = null;
+        username.value = null; // 로그아웃 시 사용자 이름 초기화
+        router.push({ name: "home" });
+      })
+      .catch((err) => {
+        console.error('로그아웃 실패:', err);
+      });
     };
-    return { API_URL, signUp, logIn, token, isLogin, logOut };
+
+    return { API_URL, signUp, logIn, token, isLogin, logOut, username };
   },
   { persist: true }
 );

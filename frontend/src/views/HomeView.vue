@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Stock Adventure</h1>
+    <h2>홈화면</h2>
   </div>
 </template>
 

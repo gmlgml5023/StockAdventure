@@ -25,11 +25,9 @@ import UpdateProfileView from "@/views/UpdateProfileView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: "/",
-      name: "home",
-      component: HomeView,
-    },
+    // Home
+    { path: "/", name: "home", component: HomeView },
+
     // Stock
     { path: '/stocklist/', name: 'StockView', component: StockView },
 
@@ -43,39 +41,14 @@ const router = createRouter({
     { path: "/journals/:journal_id/", name: "JournalDetailView", component: JournalDetailView },
     { path: "/journals/create", name: "JournalCreateView", component: JournalCreateView },
 
-    // User Management
-    {
-      path: "/signup",
-      name: "signup",
-      component: SignupView,
-    },
-    {
-      path: "/login",
-      name: "login",
-      component: LogInView,
-    },
-    {
-      path: "/investment_style/test",
-      name: "investment-test",
-      component: InvestmentTestView,
-    },
-    {
-      path: "/investment_style/result",
-      name: "investment-result",
-      component: InvestmentResultView,
-    },
-    {
-      path: "/accounts/:username",
-      name: "user-profile",
-      component: UserProfileView,
-      props: true,
-    },
-    {
-      path: "/accounts/:username/update",
-      name: "update-profile",
-      component: UpdateProfileView,
-      props: true,
-    },
+    // User Management & Test
+    { path: "/signup/", name: "signup", component: SignupView },
+    { path: "/login/", name: "login", component: LogInView },
+    { path: "/investment_style/test/", name: "investment-test", component: InvestmentTestView },
+    { path: "/investment_style/result/", name: "investment-result", component: InvestmentResultView },
+    { path: "/accounts/:username/", name: "user-profile", component: UserProfileView, props: true },
+    { path: "/accounts/:username/update/", name: "update-profile", component: UpdateProfileView, props: true },
+
   ],
 });
 

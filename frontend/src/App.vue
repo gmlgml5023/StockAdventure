@@ -1,25 +1,23 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <h1>StockAdventure</h1>
     <nav>
       <template v-if="store.isLogin">
         <button @click="logOut" class="nav-button">로그아웃</button>
-        <router-link to="/investment_style/test" class="nav-button"
-          >투자 성향 테스트</router-link
-        >
-        <router-link to="/account/:username" class="nav-button"
-          >유저 프로필</router-link
-        >
-        <RouterLink to="/stocklist/">주식정보조회</RouterLink> |
-        <RouterLink to="/journals/">매매일지</RouterLink> |
-        <RouterLink to="/articles/">커뮤니티</RouterLink>
+        <RouterLink to="/investment_style/test" class="nav-button">투자 성향 테스트</RouterLink>
+        <!-- username이 정의되어 있을 때만 유저 프로필 링크를 렌더링 -->
+        <RouterLink v-if="store.username" :to="{ name: 'user-profile', params: { username: store.username } }" class="nav-button">유저 프로필</RouterLink>
+        <RouterLink to="/stocklist/" class="nav-button">주식정보조회</RouterLink>
+        <RouterLink to="/journals/" class="nav-button">매매일지</RouterLink>
+        <RouterLink to="/articles/" class="nav-button">커뮤니티</RouterLink>
       </template>
       <template v-else>
-        <router-link to="/signup" class="nav-button">회원가입</router-link> ㅣ
-        <router-link to="/login" class="nav-button">로그인</router-link>
+        <RouterLink to="/signup" class="nav-button">회원가입</RouterLink>
+        <span>ㅣ</span>
+        <RouterLink to="/login" class="nav-button">로그인</RouterLink>
       </template>
     </nav>
-    <router-view></router-view>
+    <RouterView />
   </div>
 </template>
 
@@ -29,7 +27,7 @@ import { useAuthStore } from "@/stores/auth";
 
 const store = useAuthStore();
 
-const logOut = function () {
+const logOut = () => {
   store.logOut();
 };
 </script>
@@ -41,20 +39,10 @@ const logOut = function () {
   padding: 20px;
 }
 
-header {
-  margin-bottom: 30px;
-  padding: 20px 0;
-  border-bottom: 1px solid #eee;
-}
-
 h1 {
   color: #333;
   font-size: 24px;
   font-weight: bold;
-}
-
-main {
-  min-height: calc(100vh - 150px);
 }
 
 nav {
@@ -70,9 +58,7 @@ nav {
   color: #333;
   background-color: #f0f0f0;
   border-radius: 5px;
-  transition: background-color 0.3s;
-  border: none;
-  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .nav-button:hover {
