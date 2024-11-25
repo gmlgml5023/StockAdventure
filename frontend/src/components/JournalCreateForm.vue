@@ -42,10 +42,12 @@ import { ref } from 'vue'
 import { useJournalStore } from '@/stores/journal'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 
 const emit = defineEmits(['create-complete'])
 const store = useJournalStore()
 const router = useRouter()
+const authStore = useAuthStore()
 
 const formData = ref({
   stock_name: '',
@@ -63,6 +65,9 @@ const handleSubmit = async () => {
       method: 'post',
       url: `${store.API_URL}/journals/`,
       data: formData.value,
+      headers: {
+        'Authorization': `Token ${authStore.token}`
+      }
     })
     emit('create-complete')
     router.push({ name: 'JournalView' })

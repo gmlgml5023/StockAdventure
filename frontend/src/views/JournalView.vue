@@ -13,9 +13,9 @@ import JournalList from "@/components/JournalList.vue";
 
 const store = useJournalStore();
 
-onMounted(() => {
-  // mount 되기전에 store에 있는 전체 게시글 요청 함수를 호출
-  store.getJournals();
+onMounted(async () => {
+  await store.getJournals();
+  console.log('Journals loaded:', store.journals); // 디버깅을 위한 로그
 });
 </script>
 

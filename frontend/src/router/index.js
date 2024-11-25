@@ -37,9 +37,16 @@ const router = createRouter({
     { path: "/create", name: "ArticleCreateView", component: ArticleCreateView },
     
     // Journal
+<<<<<<< Updated upstream
     { path: "/journals/", name: "JournalView", component: JournalView },
     { path: "/journals/:journal_id/", name: "JournalDetailView", component: JournalDetailView },
     { path: "/journals/create", name: "JournalCreateView", component: JournalCreateView },
+=======
+    { path: "/journals/", name: "JournalView", component: JournalView, meta: { requiresAuth: true } },
+    { path: "/journals/:journal_id/", name: "JournalDetailView", component: JournalDetailView, meta: { requiresAuth: true } },
+    { path: "/journals/create", name: "JournalCreateView", component: JournalCreateView, meta: { requiresAuth: true } },
+    { path: "/:username/journals/", name: "user-journal", component: JournalView, meta: { requiresAuth: true } },
+>>>>>>> Stashed changes
 
     // User Management & Test
     { path: "/signup/", name: "signup", component: SignupView },
