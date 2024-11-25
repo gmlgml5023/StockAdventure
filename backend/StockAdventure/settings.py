@@ -185,3 +185,6 @@ SITE_ID = 1
 # 이미지 파일 관리
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 자동 로그인 방지
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
