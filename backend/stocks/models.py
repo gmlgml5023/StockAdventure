@@ -1,5 +1,7 @@
 # stocks/models.py
 from django.db import models
+from django.conf import settings
+
 
 class Stock(models.Model):
     stock_id = models.CharField(max_length=6, primary_key=True)  # 종목코드
@@ -33,6 +35,7 @@ class Stock(models.Model):
     evebitda = models.FloatField(null=True)  # EVEBITDA
     sector = models.CharField(max_length=100, null=True)  # 업종
     sector_per = models.FloatField(null=True)  # 업종평균PER
+    likes  = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='liked_stocks', blank=True)
 
     class Meta:
         db_table = 'stock'

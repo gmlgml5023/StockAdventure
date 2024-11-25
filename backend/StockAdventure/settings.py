@@ -159,7 +159,7 @@ REST_FRAMEWORK = {
     ],
     # permission
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
@@ -174,8 +174,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5173',
 ]
 
-# 또는 개발 환경에서는 모든 도메인 허용
-CORS_ALLOW_ALL_ORIGINS = True
+# # 또는 개발 환경에서는 모든 도메인 허용
+# CORS_ALLOW_ALL_ORIGINS = True
 
 # 추가 CORS 설정
 CORS_ALLOW_CREDENTIALS = True
@@ -185,3 +185,14 @@ SITE_ID = 1
 # 이미지 파일 관리
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# CSRF 설정 추가
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+# 세션 설정
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_USE_SESSIONS = True

@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from dj_rest_auth.registration.serializers import RegisterSerializer
+from dj_rest_auth.serializers import UserDetailsSerializer
+from stocks.serializers import StockSerializer
 from allauth.account.adapter import get_adapter
 from allauth.account.utils import setup_user_email
 from django.core.exceptions import ValidationError as DjangoValidationError
@@ -9,22 +11,17 @@ from allauth.account.models import EmailAddress
 from django.utils.translation import gettext as _
 from django.contrib.auth import get_user_model
 from .models import UserProfile
-from dj_rest_auth.serializers import UserDetailsSerializer
 
 User = get_user_model()
 
 class ProfileSerializer(UserDetailsSerializer):
-    # class StockSerializer(serializers.ModelSerializer):
-    #     class Meta:
-    #         model = Genre
-    #         fields = ('id', 'name',)    
-  
+    liked_stocks = StockSerializer(many=True, read_only=True, source='user.liked_stocks')
+    
     class Meta:
         model = UserProfile
-        # 이 부분에 정의되는 부분만 수정 가능
-        fields = ('investment_style', 'resolution', 'nickname', 'image')
-        read_only_fields = ('investment_style',)  # 투자 성향은 테스트를 통해서만 변경 가능
-        
+        fields = ('investment_style', 'resolution', 'nickname', 'image', 'liked_stocks')
+        read_only_fields = ('investment_style', 'liked_stocks')
+
 class CustomRegisterSerializer(RegisterSerializer):
     username = serializers.CharField(
         max_length=get_username_max_length(),
