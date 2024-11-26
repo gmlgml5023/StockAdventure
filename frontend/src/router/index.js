@@ -3,6 +3,9 @@ import { useAuthStore } from "@/stores/auth";
 import HomeView from "@/views/HomeView.vue";
 import IntroView from "@/views/IntroView.vue";
 
+// Stocks
+import StockRecommendationView from "@/views/StockRecommendationView.vue";
+
 // Community
 import ArticleView from "@/views/ArticleView.vue";
 import ArticleDetailView from "@/views/ArticleDetailView.vue";
@@ -26,6 +29,9 @@ const router = createRouter({
   routes: [
     { path: "/", name: "home", component: HomeView, meta: { requiresAuth: true } },
     { path: "/intro", name: "intro", component: IntroView },
+
+    // Stocks
+    { path: "/stocks/recommendations/", name: "StockRecommendationView", component: StockRecommendationView, meta: { requiresAuth: true } },
 
     // Community
     { path: "/articles/", name: "ArticleView", component: ArticleView, meta: { requiresAuth: true } },
