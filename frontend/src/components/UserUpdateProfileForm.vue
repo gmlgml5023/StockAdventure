@@ -1,6 +1,6 @@
 <template>
   <div class="update-profile">
-    <h1 class="profile-title">Profile Update</h1>
+    <h1 class="profile-title">프로필 수정</h1>
     <form @submit.prevent="updateProfile" class="profile-form">
       <div class="form-group">
         <label for="nickname">닉네임</label>
@@ -14,7 +14,7 @@
       </div>
 
       <div class="form-group">
-        <label for="resolution">각오 한 마디 !</label>
+        <label for="resolution">각오 한마디 !</label>
         <textarea
           id="resolution"
           v-model="profileData.resolution"
@@ -26,11 +26,11 @@
 
       <div class="button-group">
         <button type="submit" class="submit-button">
-          <span class="button-text">Save Changes</span>
+          <span class="button-text">수정 완료</span>
           <span class="star-icon">💫</span>
         </button>
         <button type="button" @click="goBack" class="cancel-button">
-          <span class="button-text">Cancel</span>
+          <span class="button-text">취소</span>
           <span class="star-icon">✖</span>
         </button>
       </div>
@@ -128,13 +128,13 @@ onMounted(() => {
 .update-profile {
   max-width: 600px;
   margin: auto;
+  margin-top: 50px;
   padding: 30px;
   border-radius: 15px;
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(15px);
   border: 1px solid rgba(240, 219, 55, 0.2);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.3),
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
     inset 0 0 32px rgba(240, 219, 55, 0.05);
 }
 
@@ -158,13 +158,14 @@ label {
   text-shadow: 0 0 8px rgba(240, 219, 55, 0.4);
 }
 
-.form-input, .form-textarea {
+.form-input,
+.form-textarea {
   width: 100%;
   padding: 12px;
   border-radius: 8px;
   border: 1px solid rgba(240, 219, 55, 0.4);
-  background: rgba(0, 0, 0, 0.2);
-  color: #f0db37;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.5);
   font-size: 16px;
   transition: all 0.3s ease;
   backdrop-filter: blur(5px);
@@ -194,7 +195,8 @@ label {
   margin-top: 20px;
 }
 
-.submit-button, .cancel-button {
+.submit-button,
+.cancel-button {
   flex: 1;
   padding: 12px;
   border-radius: 8px;
@@ -210,8 +212,9 @@ label {
 }
 
 .submit-button {
-  background: linear-gradient(45deg, 
-    rgba(240, 219, 55, 0.9), 
+  background: linear-gradient(
+    45deg,
+    rgba(240, 219, 55, 0.9),
     rgba(255, 209, 4, 0.9)
   );
   color: #000;
