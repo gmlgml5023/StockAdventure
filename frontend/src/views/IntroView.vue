@@ -11,7 +11,7 @@
     <section class="scroll-section" id="main">
       <div class="content fade-in">
         <h1>Stock Venture</h1>
-        <h2>우주로 떠나는 주식 투자 여행</h2>
+        <h2>함께 떠나는 주식 투자 여행</h2>
         <br />
         <p>
           안녕하세요, 투자자 여러분!<br />
