@@ -88,7 +88,9 @@
 
         <div class="recommendation-section">
           <p class="recommendation-text">
-            <span class="user-highlight">{{ userId }}</span
+            <span class="user-highlight">{{
+              profile_username || nickname || "투자자"
+            }}</span
             >님의 투자 성향에 맞는 종목을 추천해 드릴게요!
           </p>
           <RouterLink to="/" class="recommendation-button">
@@ -134,7 +136,9 @@
 
         <div class="recommendation-section">
           <p class="recommendation-text">
-            <span class="user-highlight">{{ userId }}</span
+            <span class="user-highlight">{{
+              profile_username || nickname || "투자자"
+            }}</span
             >님의 투자 성향에 맞는 종목을 추천해 드릴게요!
           </p>
           <RouterLink to="/" class="recommendation-button">
@@ -148,31 +152,29 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import axios from "axios";
 import { useAuthStore } from "@/stores/auth";
-import { useRoute } from "vue-router";
 
 const route = useRoute();
 const authStore = useAuthStore();
 const token = authStore.token;
-
 const profile_username = ref("");
 const nickname = ref("");
-const investmentStyle = ref(1);
+const investmentStyle = ref(null);
 
 const fetchUserProfile = async () => {
   try {
-    const username = authStore.username; // 현재 로그인한 사용자의 username
+    const username = authStore.username;
     const response = await axios.get(
       `http://127.0.0.1:8000/accounts/${username}/`,
       {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
+        headers: { Authorization: `Token ${token}` },
       }
     );
     profile_username.value = response.data.username;
     nickname.value = response.data.nickname;
+    investmentStyle.value = parseInt(route.query.investment_style_id);
   } catch (error) {
     console.error("프로필 로딩 실패:", error);
   }
