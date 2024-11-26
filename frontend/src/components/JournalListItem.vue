@@ -1,7 +1,7 @@
 <template>
   <div class="journal-card">
     <div class="journal-header">
-      <span class="journal-number">No. {{ journal.id }}</span>
+      <!-- <span class="journal-number">No. {{ journal.id }}</span> -->
       <span class="journal-type" :class="journal.buysell === '매수' ? 'buy' : 'sell'">
         {{ journal.buysell }}
       </span>

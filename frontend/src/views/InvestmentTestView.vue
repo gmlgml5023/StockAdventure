@@ -167,19 +167,23 @@ const getProgressWidth = (questionNum) => {
 </script>
 
 <style scoped>
+
+h1 {
+  margin-top: 40px;
+}
+
 body {
   background-color: #0c0f2e;
   color: #ffffff;
 }
 
+
 .test-title {
-  font-size: 2em;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 20px;
+  color: #f0db37;
   text-align: center;
-  letter-spacing: 1px;
-  padding: 15px 0;
+  margin-bottom: 30px;
+  font-size: 32px;
+  text-shadow: 0 0 15px rgba(240, 219, 55, 0.6);
 }
 
 .test-container {

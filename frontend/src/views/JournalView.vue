@@ -1,8 +1,8 @@
 <template>
   <div class="journal-container">
-    <h1 class="journal-title">Trading Journal</h1>
+    <h1 class="journal-title">매매 일지</h1>
     <RouterLink :to="{ name: 'JournalCreateView' }" class="create-button">
-      <span>새로운 여정 기록</span>
+      <span>쓰러 가기</span>
       <span class="star-icon">🚀</span>
     </RouterLink>
     <JournalList />
@@ -50,6 +50,7 @@ onMounted(async () => {
   text-decoration: none;
   font-weight: bold;
   margin-bottom: 20px;
+  margin-left: auto; /* 오른쪽 정렬을 위해 추가 */
   transition: all 0.3s ease;
   width: fit-content;
 }

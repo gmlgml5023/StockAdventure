@@ -1,8 +1,8 @@
 <template>
   <div class="article-container">
-    <h1 class="article-title">Space Community</h1>
+    <h1 class="article-title">종목 토론 게시판</h1>
     <RouterLink :to="{ name: 'ArticleCreateView' }" class="create-button">
-      <span>새 글 작성</span>
+      <span>글 쓰러 가기</span>
       <span class="star-icon">✨</span>
     </RouterLink>
     <ArticleList />
@@ -50,6 +50,7 @@ onMounted(() => {
   text-decoration: none;
   font-weight: bold;
   margin-bottom: 20px;
+  margin-left: auto; /* 오른쪽 정렬을 위해 추가 */
   transition: all 0.3s ease;
   width: fit-content;
 }
