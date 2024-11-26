@@ -16,7 +16,12 @@
 }
 
 body {
-  background-color: #090a1e; /* Updated background color */
+  background-image: url('@/assets/images/background_img.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #090a1e;
   color: #ffffff;
   font-family: "arita-dotum-Medium", sans-serif;
   margin: 0;
