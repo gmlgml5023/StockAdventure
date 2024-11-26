@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h2>매매일지 작성</h2>
+      <!-- <h2>매매일지 작성</h2> -->
       <JournalCreateForm @create-complete="handleCreateComplete" />
     </div>
   </template>

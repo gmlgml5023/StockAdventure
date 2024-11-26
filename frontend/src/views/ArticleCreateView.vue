@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>게시글 작성</h1>
+    <!-- <h1>게시글 작성</h1> -->
     <ArticleCreateForm @create-complete="handleCreateComplete" />
   </div>
 </template>
