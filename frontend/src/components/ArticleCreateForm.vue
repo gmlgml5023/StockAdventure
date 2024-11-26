@@ -1,6 +1,6 @@
 <template>
   <div class="article-container">
-    <h1 class="article-title">Community Post</h1>
+    <h1 class="article-title">게시글 작성하기</h1>
     <form @submit.prevent="handleSubmit" class="article-form">
       <div class="form-group">
         <label for="title">제목</label>
@@ -26,7 +26,7 @@
       </div>
 
       <button type="submit" class="submit-button">
-        <span class="button-text">Share Story</span>
+        <span class="button-text">작성하기</span>
         <span class="star-icon">✨</span>
       </button>
     </form>

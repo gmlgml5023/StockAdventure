@@ -1,6 +1,6 @@
 <template>
     <div class="login-container">
-      <h1 class="login-title">Welcome to StockVenture</h1>
+      <h1 class="login-title">로그인</h1>
       <form @submit.prevent="logIn" class="login-form">
         <div class="form-group">
           <label for="username">ID</label>
@@ -8,12 +8,12 @@
         </div>
   
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">비밀번호</label>
           <input type="password" id="password" v-model.trim="password" required class="form-input" placeholder="Enter your password">
         </div>
   
         <button type="submit" class="login-button">
-          <span class="button-text">추천 종목 보러 가기</span>
+          <span class="button-text">오늘의 추천 종목 보러 가기</span>
           <span class="star-icon">⭐</span>
         </button>
       </form>

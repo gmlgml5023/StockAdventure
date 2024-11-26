@@ -9,5 +9,7 @@ import UserLoginForm from '@/components/UserLoginForm.vue'
 </script>
 
 <style scoped>
-/* 스타일 추가 가능 */
+div {
+  margin-top: 50px;
+}
 </style>

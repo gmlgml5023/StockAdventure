@@ -12,3 +12,9 @@ const handleCreateComplete = () => {
   console.log('게시글이 작성되었습니다.')
 }
 </script>
+
+<style scoped>
+div {
+  margin-top: 50px;
+}
+</style>

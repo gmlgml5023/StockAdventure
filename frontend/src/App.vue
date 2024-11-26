@@ -54,7 +54,7 @@ const logOut = () => {
 
 .logo {
   color: #f0db37;
-  font-size: 40px;
+  font-size: 50px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;

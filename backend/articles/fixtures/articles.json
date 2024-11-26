@@ -3,55 +3,220 @@
         "model": "articles.article",
         "pk": 1,
         "fields": {
-            "user": 1,
-            "title": "First Sample Article",
-            "article_content": "This is the content of the first sample article.",
-            "created_at": "2023-11-20T10:00:00Z",
-            "updated_at": "2023-11-20T10:00:00Z"
+            "user": 3,
+            "title": "물타야할까요?",
+            "article_content": "세게 물렸어요. 물타야할까요? 지금 -30%인데 더 떨어질까봐 걱정됩니다.",
+            "created_at": "2023-11-20",
+            "updated_at": "2023-11-20"
         }
     },
     {
         "model": "articles.article",
         "pk": 2,
         "fields": {
-            "user": 2,
-            "title": "Second Sample Article",
-            "article_content": "Content for the second sample article.",
-            "created_at": "2023-11-21T11:00:00Z",
-            "updated_at": "2023-11-21T11:00:00Z"
+            "user": 1,
+            "title": "지금 들어가야 하나요?",
+            "article_content": "ㅈㄱㄴ 같은데 어떻게 생각하세요? 차트가 바닥을 친 것 같아요.",
+            "created_at": "2023-11-21",
+            "updated_at": "2023-11-21"
         }
     },
     {
         "model": "articles.article",
         "pk": 3,
         "fields": {
-            "user": 3,
-            "title": "Third Sample Article",
-            "article_content": "Here is the third article content sample.",
-            "created_at": "2023-11-22T12:00:00Z",
-            "updated_at": "2023-11-22T12:00:00Z"
+            "user": 4,
+            "title": "이 종목 괜찮은 것 같아요.",
+            "article_content": "실적도 좋고 주가도 저평가 된 것 같아요. 어떻게 보시나요?",
+            "created_at": "2023-11-22",
+            "updated_at": "2023-11-22"
         }
     },
     {
         "model": "articles.article",
         "pk": 4,
         "fields": {
-            "user": 1,
-            "title": "Fourth Sample Article",
-            "article_content": "Fourth sample article content comes here.",
-            "created_at": "2023-11-23T13:00:00Z",
-            "updated_at": "2023-11-23T13:00:00Z"
+            "user": 2,
+            "title": "손절해야 할까요?",
+            "article_content": "계속 떨어지는데 언제까지 기다려야 할지 모르겠어요. 조언 부탁드립니다.",
+            "created_at": "2023-11-23",
+            "updated_at": "2023-11-23"
         }
     },
     {
         "model": "articles.article",
         "pk": 5,
         "fields": {
+            "user": 5,
+            "title": "연말까지 주가 예측",
+            "article_content": "연말까지 20% 상승할 것 같아요. 이유는 신제품 출시와 실적 호전 때문입니다.",
+            "created_at": "2023-11-24",
+            "updated_at": "2023-11-24"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 6,
+        "fields": {
+            "user": 3,
+            "title": "이 종목 분석해보세요.",
+            "article_content": "PER이 업종 평균보다 낮고 ROE가 높아요. 저평가 된 것 같아요.",
+            "created_at": "2023-11-25",
+            "updated_at": "2023-11-25"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 7,
+        "fields": {
+            "user": 1,
+            "title": "배당금 받고 싶어요.",
+            "article_content": "안정적인 배당주 추천해주세요. 장기 투자할 생각입니다.",
+            "created_at": "2023-11-26",
+            "updated_at": "2023-11-26"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 8,
+        "fields": {
+            "user": 4,
+            "title": "테마주 투자 전략",
+            "article_content": "2차전지 관련주 중에서 어떤 종목이 유망할까요?",
+            "created_at": "2023-11-27",
+            "updated_at": "2023-11-27"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 9,
+        "fields": {
             "user": 2,
-            "title": "Fifth Sample Article",
-            "article_content": "Finally, content for the fifth sample article.",
-            "created_at": "2023-11-24T14:00:00Z",
-            "updated_at": "2023-11-24T14:00:00Z"
+            "title": "지금이 저가 매수의 기회?",
+            "article_content": "주가가 많이 떨어졌는데, 이제 반등할 때가 된 것 같아요. 어떻게 생각하세요?",
+            "created_at": "2023-11-28",
+            "updated_at": "2023-11-28"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 10,
+        "fields": {
+            "user": 5,
+            "title": "S&P500 지수 어떻게 보시나요?",
+            "article_content": "미국 증시가 계속 오르고 있는데, 고점인가요? 아니면 더 오를까요?",
+            "created_at": "2023-11-29",
+            "updated_at": "2023-11-29"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 11,
+        "fields": {
+            "user": 3,
+            "title": "코스닥 시장 전망은 어떨까요?",
+            "article_content": "코스닥이 요즘 약세인데, 언제쯤 반등할 것 같나요?",
+            "created_at": "2023-11-30",
+            "updated_at": "2023-11-30"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 12,
+        "fields": {
+            "user": 1,
+            "title": "기술주, 지금 사야 할까요?",
+            "article_content": "IT 기업들 실적이 좋아지고 있는데, 지금이 매수 타이밍일까요?",
+            "created_at": "2023-12-01",
+            "updated_at": "2023-12-01"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 13,
+        "fields": {
+            "user": 4,
+            "title": "신규 상장주 관심 있습니다.",
+            "article_content": "이번에 상장하는 기업 중에 괜찮은 곳 있나요? 정보 공유 부탁드려요.",
+            "created_at": "2023-12-02",
+            "updated_at": "2023-12-02"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 14,
+        "fields": {
+            "user": 2,
+            "title": "외국인 매수세 어떻게 보세요?",
+            "article_content": "요즘 외국인들이 많이 사들이는데, 이게 좋은 신호일까요?",
+            "created_at": "2023-12-03",
+            "updated_at": "2023-12-03"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 15,
+        "fields": {
+            "user": 5,
+            "title": "장기 투자 vs 단타",
+            "article_content": "요즘 시장이 불안정한데, 장기로 가져가는 게 나을까요 아니면 단타가 나을까요?",
+            "created_at": "2023-12-04",
+            "updated_at": "2023-12-04"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 16,
+        "fields": {
+            "user": 3,
+            "title": "배당주 추천해주세요",
+            "article_content": "안정적인 배당주 좀 추천해주세요. 은행주는 어떤가요?",
+            "created_at": "2023-12-05",
+            "updated_at": "2023-12-05"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 17,
+        "fields": {
+            "user": 1,
+            "title": "이 차트 어떻게 보세요?",
+            "article_content": "상승 추세인 것 같은데, 저만 그렇게 보이나요? 의견 좀 들려주세요.",
+            "created_at": "2023-12-06",
+            "updated_at": "2023-12-06"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 18,
+        "fields": {
+            "user": 4,
+            "title": "실적 발표 후 주가 전망",
+            "article_content": "이번 분기 실적이 예상보다 좋았는데, 주가는 왜 안 오르는 걸까요?",
+            "created_at": "2023-12-07",
+            "updated_at": "2023-12-07"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 19,
+        "fields": {
+            "user": 2,
+            "title": "ETF vs 개별주식",
+            "article_content": "요즘 ETF에 관심이 가는데, 개별주식보다 나을까요? 장단점 좀 알려주세요.",
+            "created_at": "2023-12-08",
+            "updated_at": "2023-12-08"
+        }
+    },
+    {
+        "model": "articles.article",
+        "pk": 20,
+        "fields": {
+            "user": 5,
+            "title": "테슬라 주가 어떻게 될까요?",
+            "article_content": "테슬라 주가가 많이 올랐는데, 더 오를까요? 아니면 하락할까요?",
+            "created_at": "2023-12-09",
+            "updated_at": "2023-12-09"
         }
     }
 ]

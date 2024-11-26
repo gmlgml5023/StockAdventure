@@ -1,6 +1,6 @@
 <template>
   <div class="update-form">
-    <h2 class="form-title">Edit Trading Record</h2>
+    <h2 class="form-title">매매일지 수정하기</h2>
     <form @submit.prevent="handleSubmit" class="journal-form">
       <div class="form-group">
         <label for="stock_name">종목명</label>

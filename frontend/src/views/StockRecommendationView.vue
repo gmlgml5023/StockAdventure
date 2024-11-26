@@ -1,9 +1,9 @@
 <template>
   <div class="recommended-stocks">
-    <h1 class="stock-title">추천 종목 조회</h1>
-    <div class="header-section">
+    <h1 class="stock-title">오늘의 추천 종목</h1>
+    <!-- <div class="header-section">
       <StockUpdateButton class="update-button" />
-    </div>
+    </div> -->
     <StockRecommendationTable 
       v-if="stockStore.recommendedStocks.length > 0"
       :stocks="stockStore.recommendedStocks"

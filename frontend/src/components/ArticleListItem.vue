@@ -54,13 +54,13 @@ defineProps({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .article-number {
   color: #a1a09c;
   font-weight: lighter;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 .article-author {

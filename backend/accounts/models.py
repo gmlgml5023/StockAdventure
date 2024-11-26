@@ -11,7 +11,7 @@ class UserProfile(models.Model):
         blank=True,
         verbose_name='투자 성향'
     )
-    resolution = models.TextField(blank=True, default="주식 투자로 부자되기")
+    resolution = models.TextField(blank=True, default="투자 목표나 각오 한마디를 작성해주세요.")
     nickname = models.CharField(max_length=40, blank=True)
     image = models.ImageField(upload_to='images/', default='images/default_character.png')
     

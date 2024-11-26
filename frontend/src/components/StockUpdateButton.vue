@@ -1,7 +1,7 @@
 <template>
   <button @click="updateStocksData" :disabled="isUpdating" class="update-button">
     <span class="button-text">{{ buttonText }}</span>
-    <span class="star-icon">{{ isUpdating ? '🚀' : '✨' }}</span>
+    <span class="star-icon">{{ isUpdating ? '🚀' : '' }}</span>
   </button>
 </template>
 
@@ -25,7 +25,9 @@ const updateStocksData = () => {
 
 <style scoped>
 .update-button {
-  padding: 12px 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 12px;
   border-radius: 8px;
   border: none;
   background: linear-gradient(45deg, 

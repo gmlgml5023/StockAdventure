@@ -2,8 +2,8 @@
   <div class="article-container">
     <h1 class="article-title">커뮤니티</h1>
     <RouterLink :to="{ name: 'ArticleCreateView' }" class="create-button">
-      <span>글 쓰러 가기</span>
-      <span class="star-icon">✨</span>
+      <span>글 쓰기</span>
+      <span class="star-icon">✏️</span>
     </RouterLink>
     <ArticleList />
   </div>

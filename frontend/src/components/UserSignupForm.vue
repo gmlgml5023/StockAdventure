@@ -1,6 +1,6 @@
 <template>
     <div class="signup-container">
-      <h1 class="signup-title">Welcome to StockVenture</h1>
+      <h1 class="signup-title">회원 가입</h1>
       <form @submit.prevent="signUp" class="signup-form">
         <div class="form-group">
           <label for="username">ID</label>
@@ -15,7 +15,7 @@
         </div>
   
         <div class="form-group">
-          <label for="password1">Password</label>
+          <label for="password1">비밀번호</label>
           <input 
             type="password" 
             id="password1" 
@@ -27,7 +27,7 @@
         </div>
   
         <div class="form-group">
-          <label for="password2">Password Confirm</label>
+          <label for="password2">비밀번호 확인</label>
           <input 
             type="password" 
             id="password2" 
@@ -39,7 +39,7 @@
         </div>
   
         <button type="submit" class="signup-button">
-          <span class="button-text">Start Adventure</span>
+          <span class="button-text">내 투자 성향 보러가기</span>
           <span class="star-icon">🚀</span>
         </button>
       </form>

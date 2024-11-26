@@ -2,7 +2,7 @@
   <div class="journal-container">
     <h1 class="journal-title">매매 일지</h1>
     <RouterLink :to="{ name: 'JournalCreateView' }" class="create-button">
-      <span>쓰러 가기</span>
+      <span>작성하기</span>
       <span class="star-icon">🚀</span>
     </RouterLink>
     <JournalList />

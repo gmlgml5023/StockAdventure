@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="nav-container">
-      <h1 class="logo">StockAdventure</h1>
+      <h1 class="logo">StockVenture</h1>
       <nav class="nav-menu">
         <RouterLink to="/signup" class="nav-button">회원가입</RouterLink>
         <RouterLink to="/login" class="nav-button">로그인</RouterLink>
@@ -10,14 +10,16 @@
 
     <section class="scroll-section" id="main">
       <div class="content fade-in">
-        <h1>StockAdventure</h1>
-        <h2>우주로 떠나는 투자 여행</h2>
+        <h1>Stock Venture</h1>
+        <h2>우주로 떠나는 주식 투자 여행</h2>
+        <br />
         <p>
           안녕하세요, 투자자 여러분!<br />
-          StockAdventure에 오신 것을 환영합니다.<br /><br />
-          우리는 여러분의 투자 여정을 로켓을 타고 우주 여행을 떠나는 것처럼,
+          StockVenture에 오신 것을 환영합니다.<br /><br />
+          우리는 여러분의 투자 여정을<br />
+          로켓을 타고 우주 여행을 떠나는 것처럼,
           <br />
-          더 높은 수익률을 향해 함께 날아오르는 경험을 제공합니다.<br /><br />
+          더 높은 수익률을 향해 함께 날아오르는 경험으로 만들어드립니다.<br /><br />
         </p>
         <div class="rocket-icon">🚀</div>
       </div>
@@ -30,13 +32,12 @@
         <div class="section-content">
           <p>
             투자 성향을 탐색하는 첫 번째 단계!<br /><br />
-            안정형, 위험중립형, 공격투자형으로 나누어진 투자 성향 테스트를
-            통해,<br />
-            여러분에게 가장 적합한 종목을 추천합니다.<br /><br />
-            안정적인 배당주에서부터 고위험 고수익 종목까지,<br />
+            안정형, 위험중립형, 공격투자형으로 나누어진 맞춤형 테스트로,<br />
+            당신에게 가장 적합한 투자 종목을 추천해드립니다.<br /><br />
+            안정적인 배당주부터 고수익을 노리는 성장주까지,<br />
             여러분의 투자 로켓을 우주로 쏘아올릴 준비가 되어 있습니다!<br /><br />
-            이제는 안정적인 배당주부터 고위험 고수익 종목까지,<br />
-            여러분의 투자 목표에 맞는 종목을 선택하세요!
+            지금 바로 테스트를 시작하고,<br />
+            나만의 투자 여정을 시작해보세요!
           </p>
         </div>
       </div>
@@ -49,8 +50,8 @@
         <!-- 섹션 내용 -->
         <p>
           매매일지 기능을 통해 여러분의 투자 여정을 기록하세요.<br /><br />
-          날짜, 종목명, 매매 이유와 결과를 정리함으로써 과거의 경험에서
-          배우고,<br />
+          날짜, 종목명, 매매 이유와 결과를 정리함으로써<br />
+          과거의 경험에서 배우고,<br />
           향후 투자 전략을 더욱 견고히 할 수 있습니다.<br /><br />
           반복되는 실수를 줄이고, 자신만의 투자 원칙을 세워보세요!<br />
         </p>
@@ -60,12 +61,13 @@
     <!-- 커뮤니티 섹션 -->
     <section class="scroll-section" id="community">
       <div class="content fade-in">
-        <h2>💬 커뮤니티와 함께하는 투자 토론</h2>
+        <h2>💬 커뮤니티와 함께하는 종목 토론</h2>
         <!-- 섹션 내용 -->
         <p>
           커뮤니티는 여러분이 다른 투자자들과 소통하고,<br />
           전략을 공유할 수 있는 공간입니다.<br /><br />
-          함께 투자 아이디어를 나누고, 시장 전망을 이야기하며,<br />
+          함께 투자 아이디어를 나누고,<br />
+          시장 전망을 이야기하며,<br />
           함께 더 높은 목표를 향해 나아가세요!
         </p>
       </div>
@@ -74,12 +76,12 @@
     <!-- 마지막 섹션 -->
     <section class="scroll-section" id="final">
       <div class="content fade-in">
-        <h3>
-          StockAdventure와 함께,<br />
-          여러분의 투자 수익률을 우주로 쏘아올려 보세요!<br /><br />
+        <h2>
+          StockVenture와 함께,<br />
+          여러분의 수익률을 우주로 쏘아올려 보세요!<br /><br />
           이제는 주식 탐사 여행을 떠날 시간입니다.<br />
-          높은 수익률과 함께 새로운 투자 세계로의 모험을 시작하세요!
-        </h3>
+          새로운 투자 세계로의 모험을 시작하세요!
+        </h2>
       </div>
     </section>
   </div>
@@ -186,6 +188,7 @@ body {
   display: inline-block;
   margin: 0 10px;
   padding: 10px 20px;
+  font-size: 20px;
   text-decoration: none;
   color: #333;
   background-color: #f0f0f0;

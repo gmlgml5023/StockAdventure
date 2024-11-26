@@ -13,8 +13,8 @@
           <h2 class="article-title">{{ article.title }}</h2>
           <div class="article-meta">
             <span>작성자: {{ article.username }}</span>
-            <span>작성일: {{ article.created_at }}</span>
-            <span>수정일: {{ article.updated_at }}</span>
+            <span>작성일: {{ formatDate(article.created_at) }}</span>
+            <span>수정일: {{ formatDate(article.updated_at) }}</span>
           </div>
         </div>
 
@@ -92,14 +92,18 @@ const handleDeleteComplete = () => {
   article.value = null
 }
 
+// const formatDate = (dateString) => {
+//   return new Date(dateString).toLocaleDateString('ko-KR', {
+//     year: 'numeric',
+//     month: 'long',
+//     day: 'numeric',
+//     hour: '2-digit',
+//     minute: '2-digit'
+//   });
+// };
+
 const formatDate = (dateString) => {
-  return new Date(dateString).toLocaleDateString('ko-KR', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  });
+  return new Date(dateString).toISOString().split('T')[0];
 };
 </script>
 
@@ -178,8 +182,7 @@ const formatDate = (dateString) => {
 .article-meta {
   display: flex;
   justify-content: space-between;
-  color: #a1a09c;
-  /* color: rgba(240, 219, 55, 0.7); */
+  color: rgba(240, 219, 55, 0.7);
   font-size: 14px;
 }
 
