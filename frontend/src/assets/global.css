@@ -1,7 +1,8 @@
 /* Import fonts */
 @font-face {
-  font-family: 'STUNNING-Bd';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/STUNNING-Bd.woff2') format('woff2');
+  font-family: "STUNNING-Bd";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/STUNNING-Bd.woff2")
+    format("woff2");
   font-weight: normal;
   font-style: normal;
 }
@@ -16,7 +17,7 @@
 }
 
 body {
-  background-image: url('@/assets/images/background_img.jpg');
+  background-image: url("@/assets/images/background_img.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -80,4 +81,70 @@ input,
 textarea,
 select {
   font-family: "arita-dotum-Medium", sans-serif;
+}
+
+/* 스크롤 섹션을 위한 기본 스타일 */
+.scroll-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+/* 우주 배경 효과 */
+.space-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #1a1b4b 0%, #090a1e 100%);
+  z-index: -1;
+}
+
+/* 별똥별 애니메이션 */
+.shooting-star {
+  position: absolute;
+  background: linear-gradient(45deg, #f0db37, transparent);
+  animation: shooting 3s linear infinite;
+}
+
+@keyframes shooting {
+  0% {
+    transform: translateX(-100%) translateY(-100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200%) translateY(200%);
+    opacity: 0;
+  }
+}
+
+/* 섹션 전환 애니메이션 */
+.fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 우주선 아이콘 스타일 */
+.rocket-icon {
+  font-size: 3rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
