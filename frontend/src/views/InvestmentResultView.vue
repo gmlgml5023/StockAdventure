@@ -41,17 +41,17 @@ onMounted(() => {
 }
 
 h1 {
-  color: #333;
+  color: #f6f2f2;
   margin-bottom: 20px;
 }
 
 h2 {
-  color: #2c3e50;
+  color: #e6e6e6;
   margin-bottom: 10px;
 }
 
 p {
-  color: #666;
+  color: #e2e2e2;
   line-height: 1.6;
 }
 </style>

@@ -71,15 +71,29 @@ def calculate_investment_style(request):
         }, status=status.HTTP_200_OK)
                 
     else:
-        questions = StyleQuestion.objects.all()
-        return Response([{
-            'id': q.id,
-            'question_text': q.question_text,
-            'choices': [{
-                'id': c.id,
-                'choice_text': c.choice_text
-            } for c in q.choices.all()]
-        } for q in questions], status=status.HTTP_200_OK)
+        # 현재 질문 번호를 쿼리 파라미터로 받음 (기본값 1)
+        current_question = int(request.GET.get('question', 1))
+        total_questions = StyleQuestion.objects.count()
+        
+        try:
+            question = StyleQuestion.objects.get(id=current_question)
+            response_data = {
+                'current_question': current_question,
+                'total_questions': total_questions,
+                'question': {
+                    'id': question.id,
+                    'question_text': question.question_text,
+                    'choices': [{
+                        'id': c.id,
+                        'choice_text': c.choice_text
+                    } for c in question.choices.all()]
+                }
+            }
+            return Response(response_data, status=status.HTTP_200_OK)
+        except StyleQuestion.DoesNotExist:
+            return Response({
+                'error': '해당 문항을 찾을 수 없습니다.'
+            }, status=status.HTTP_404_NOT_FOUND)
 
 @api_view(['GET'])
 def investment_test_result(request):
