@@ -278,7 +278,6 @@ onMounted(() => {
 
 .stock-row:hover {
   background-color: #f8f9fa;
-  cursor: pointer;
 }
 
 /* 상태 메시지 스타일링 */

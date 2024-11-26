@@ -3,6 +3,7 @@
     <a href="http://localhost:5173/"><h1>StockAdventure</h1></a>
     <nav v-if="authStore.isLogin">
       <RouterLink to="/" class="nav-button">주식정보조회</RouterLink>
+      <RouterLink to="/stocks/recommendations/" class="nav-button">추전종목조회</RouterLink>
       <RouterLink to="/journals/" class="nav-button">매매일지</RouterLink>
       <RouterLink to="/articles/" class="nav-button">커뮤니티</RouterLink>
       <RouterLink to="/investment_style/test" class="nav-button">투자 성향 테스트</RouterLink>
