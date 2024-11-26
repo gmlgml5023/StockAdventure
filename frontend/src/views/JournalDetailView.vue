@@ -63,6 +63,7 @@
         @cancel="isEditing = false"
       />
   </div>
+</div>
 </template>
 
 <script setup>
