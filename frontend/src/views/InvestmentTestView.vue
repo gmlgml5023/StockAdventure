@@ -4,8 +4,14 @@
     <div v-if="loading">로딩 중...</div>
     <div v-else-if="currentQuestion" class="test-container">
       <!-- 진행 상황 표시 -->
-      <div class="progress">
-        Question {{ currentQuestionNum }} / {{ totalQuestions }}
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="stars">
+            <span v-for="n in 7" :key="n" class="star" :class="{ 'active': n < currentQuestionNum }">⭐</span>
+          </div>
+          <div class="rocket" :style="{ left: getRocketPosition(currentQuestionNum) }">🚀</div>
+          <div class="progress-fill" :style="{ width: getProgressWidth(currentQuestionNum) }"></div>
+        </div>
       </div>
 
       <!-- 현재 질문 표시 -->
@@ -139,26 +145,41 @@ const submitAnswers = async () => {
 const selectAnswer = (choiceId) => {
   answers.value["question_" + currentQuestion.value.id] = choiceId;
 };
+
+const getRocketPosition = (questionNum) => {
+  const positions = [4.3, 18.6, 33.65, 49, 64.3, 79.8, 95.7];
+  const position = positions[questionNum - 1];
+  
+  return `${position}%`;
+};
+
+const getProgressWidth = (questionNum) => {
+  const positions = [4.3, 18.6, 33.65, 49, 64.3, 79.8, 95.7];
+  const position = positions[questionNum - 1];
+  
+  // 마지막 문항에서는 게이지가 100% 차도록 조정
+  if (questionNum === 7) {
+    return '100%';
+  }
+  
+  return `${position}%`;
+};
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap");
-
 body {
   background-color: #0c0f2e;
   color: #ffffff;
-  font-family: "Nanum Gothic", sans-serif;
 }
 
 .test-title {
-  font-family: "Nanum Gothic", sans-serif;
-  font-size: 2.2em;
+  font-size: 2em;
   font-weight: 800;
   color: #ffffff;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   text-align: center;
   letter-spacing: 1px;
-  padding: 20px 0;
+  padding: 15px 0;
 }
 
 .test-container {
@@ -168,38 +189,92 @@ body {
   align-items: center;
 }
 
-.progress {
+.progress-container {
+  width: 95%;
+  max-width: 650px;
+  margin: 20px auto;
+}
+
+.progress-bar {
+  background: rgba(255, 255, 255, 0.1);
+  height: 20px;
+  border-radius: 25px;
+  border: 2px solid #ffe81f;
+  position: relative;
+  overflow: visible;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #ffe81f 0%, #ffd700 100%);
+  height: 100%;
+  transition: width 0.5s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 25px;
+  overflow: visible;
+}
+
+.rocket {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  filter: drop-shadow(0 0 5px rgba(255, 232, 31, 0.7));
+  transition: left 0.5s ease;
+  z-index: 2;
+  margin-left: -10px;
+}
+
+.stars {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% - 30px);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 1;
+  margin: 0 auto;
+  left: 15px;
+}
+
+.star {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  width: 20px;
   text-align: center;
-  font-size: 1.2em;
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 10px 20px;
-  border-radius: 20px;
-  margin-bottom: 20px;
-  border: 1px solid #ffe81f;
-  font-family: "Nanum Gothic", sans-serif;
-  font-weight: 400;
+}
+
+.star.active {
+  color: #ffe81f;
+  filter: drop-shadow(0 0 3px rgba(255, 232, 31, 0.7));
+  transform: scale(1.2);
 }
 
 .question-box {
   background-color: rgba(255, 255, 255, 0.15);
   border-radius: 15px;
   padding: 15px;
-  margin-bottom: 20px;
-  width: 90%;
-  max-width: 600px;
+  margin-bottom: 18px;
+  width: 95%;
+  max-width: 650px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100px;
+  min-height: 95px;
+  word-break: keep-all;
+  white-space: pre-wrap;
 }
 
 .question-box h2 {
   margin: 0;
   color: #ffffff;
   text-align: center;
-  font-family: "Nanum Gothic", sans-serif;
   font-size: 1.3em;
   font-weight: 700;
   line-height: 1.6;
@@ -224,13 +299,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 8px;
-  font-family: "Nanum Gothic", sans-serif;
-  font-size: 1em;
-  font-weight: 500;
-  width: 90%;
-  max-width: 600px;
-  min-height: 50px;
+  margin-bottom: 7px;
+  width: 95%;
+  max-width: 650px;
+  min-height: 48px;
+  word-break: keep-all;
+  white-space: pre-wrap;
 }
 
 .choice-box:hover {
@@ -249,12 +323,11 @@ body {
   background-color: transparent;
   border: 2px solid #ffe81f;
   color: #ffffff;
-  padding: 10px 20px;
-  margin: 10px;
+  padding: 8px 16px;
+  margin: 8px;
   border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: "Nanum Gothic", sans-serif;
   font-weight: 700;
 }
 
@@ -278,10 +351,5 @@ body {
   .choice-box {
     padding: 12px;
   }
-}
-
-/* 모든 텍스트 요소에 대한 기본 스타일 */
-* {
-  font-family: "Nanum Gothic", sans-serif;
 }
 </style>
