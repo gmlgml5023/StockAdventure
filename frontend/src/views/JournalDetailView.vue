@@ -205,7 +205,8 @@ h2 {
 }
 
 .info-item {
-  background: rgba(240, 219, 55, 0.1);
+  /* background: rgba(240, 219, 55, 0.1); */
+  background: rgba(152, 149, 125, 0.1);
   padding: 15px;
   border-radius: 8px;
 }
@@ -225,10 +226,12 @@ h2 {
 
 .text-section {
   margin-bottom: 30px;
+  
 }
 
 .text-block {
   margin-bottom: 20px;
+  
 }
 
 .text-block h3 {
@@ -240,7 +243,9 @@ h2 {
 .text-block p {
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
-  background: rgba(0, 0, 0, 0.2);
+  /* background: rgba(0, 0, 0, 0.2); */
+  background: rgba(152, 149, 125, 0.1);
+
   padding: 15px;
   border-radius: 8px;
   margin: 0;

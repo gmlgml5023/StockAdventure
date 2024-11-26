@@ -178,7 +178,8 @@ const formatDate = (dateString) => {
 .article-meta {
   display: flex;
   justify-content: space-between;
-  color: rgba(240, 219, 55, 0.7);
+  color: #a1a09c;
+  /* color: rgba(240, 219, 55, 0.7); */
   font-size: 14px;
 }
 

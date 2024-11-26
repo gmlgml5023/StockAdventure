@@ -1,43 +1,41 @@
-// src/views/StockList.vue
 <template>
-  <div class="stock-container">
-    <h1 class="stock-title">주식 정보 조회</h1>
+  <div class="recommended-stocks">
+    <h1 class="stock-title">추천 종목 조회</h1>
     <div class="header-section">
       <StockUpdateButton class="update-button" />
     </div>
-    <div v-if="!stockStore.stocks.length" class="loading-message">
-      주식 데이터를 불러오기 전입니다.
-    </div>
-    <StockTable 
-      v-else
-      :stocks="stockStore.stocks"
+    <StockRecommendationTable 
+      v-if="stockStore.recommendedStocks.length > 0"
+      :stocks="stockStore.recommendedStocks"
     />
+    <div v-else class="no-stocks">
+      주식 정보를 불러오기 전입니다. 정보 받아오기 버튼을 눌러주세요.
+    </div>
   </div>
 </template>
+  
+  <script setup>
+  import { useStockStore } from '@/stores/stock';
+  import { onMounted } from 'vue';
+  import StockRecommendationTable from '@/components/StockRecommendationTable.vue';
+  import StockUpdateButton from '@/components/StockUpdateButton.vue';
 
-<script setup>
-import { onMounted } from 'vue'
-import { useStockStore } from '@/stores/stock'
-import StockTable from '@/components/StockTable.vue'
-import StockUpdateButton from '@/components/StockUpdateButton.vue'
-
-const stockStore = useStockStore()
-
-onMounted(() => {
-  stockStore.getStocks()
-})
-</script>
-
-<style scoped>
-
-.stock-container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 20px;
-}
+  const stockStore = useStockStore();
+  
+  const loadRecommendedStocks = () => {
+    stockStore.getRecommendedStocks();
+  };
+  
+  onMounted(() => {
+    loadRecommendedStocks();
+  });
+  </script>
+  
+  <style scoped>
 
 
-.stock-title {
+
+  .stock-title {
   color: #f0db37;
   text-align: center;
   margin-bottom: 30px;
@@ -45,16 +43,28 @@ onMounted(() => {
   text-shadow: 0 0 15px rgba(240, 219, 55, 0.6);
 }
 
-.loading-message {
-  text-align: center;
-  padding: 40px;
-  font-size: 16px;
-  color: #666;
-}
+  .recommended-stocks {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
 
-.header-section {
+
+  }
+  
+  .header-section {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
   }
-</style>
+  
+  .no-stocks {
+    text-align: center;
+    color: #f0db37;
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(240, 219, 55, 0.2);
+    border-radius: 15px;
+  }
+  </style>

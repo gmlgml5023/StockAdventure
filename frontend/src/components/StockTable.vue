@@ -4,7 +4,8 @@
     <!-- 왼쪽 검색창 -->
     <div class="search-box">
       <input 
-        v-model="searchQuery" 
+        :value="searchQuery"
+        @input="updateSearchQuery"
         type="text" 
         placeholder="종목명 검색..." 
         class="search-input"
@@ -29,20 +30,90 @@
     <table v-else class="stock-table">
       <thead>
         <tr>
-          <th>종목코드</th>
-          <th>종목명</th>
-          <th>현재가</th>
-          <th>등락</th>
-          <th>등락율</th>
-          <th>거래량</th>
-          <th>베타</th>
-          <th>ROA</th>
-          <th>ROE</th>
-          <th>EPS</th>
-          <th>BPS</th>
-          <th>PER</th>
-          <th>PBR</th>
-          <th>업종</th>
+          <th @click="sortBy('stock_id')">
+            종목코드
+            <span class="sort-arrow">
+              {{ getSortArrow('stock_id') }}
+            </span>
+          </th>
+          <th @click="sortBy('stock_name')">
+            종목명
+            <span class="sort-arrow">
+              {{ getSortArrow('stock_name') }}
+            </span>
+          </th>
+          <th @click="sortBy('current_price')">
+            현재가
+            <span class="sort-arrow">
+              {{ getSortArrow('current_price') }}
+            </span>
+          </th>
+          <th @click="sortBy('price_change')">
+            등락
+            <span class="sort-arrow">
+              {{ getSortArrow('price_change') }}
+            </span>
+          </th>
+          <th @click="sortBy('price_change_rate')">
+            등락율
+            <span class="sort-arrow">
+              {{ getSortArrow('price_change_rate') }}
+            </span>
+          </th>
+          <th @click="sortBy('volume')">
+            거래량
+            <span class="sort-arrow">
+              {{ getSortArrow('volume') }}
+            </span>
+          </th>
+          <th @click="sortBy('beta')">
+            베타
+            <span class="sort-arrow">
+              {{ getSortArrow('beta') }}
+            </span>
+          </th>
+          <th @click="sortBy('roa')">
+            ROA
+            <span class="sort-arrow">
+              {{ getSortArrow('roa') }}
+            </span>
+          </th>
+          <th @click="sortBy('roe')">
+            ROE
+            <span class="sort-arrow">
+              {{ getSortArrow('roe') }}
+            </span>
+          </th>
+          <th @click="sortBy('eps')">
+            EPS
+            <span class="sort-arrow">
+              {{ getSortArrow('eps') }}
+            </span>
+          </th>
+          <th @click="sortBy('bps')">
+            BPS
+            <span class="sort-arrow">
+              {{ getSortArrow('bps') }}
+            </span>
+          </th>
+          <th @click="sortBy('per')">
+            PER
+            <span class="sort-arrow">
+              {{ getSortArrow('per') }}
+            </span>
+          </th>
+          <th @click="sortBy('pbr')">
+            PBR
+            <span class="sort-arrow">
+              {{ getSortArrow('pbr') }}
+            </span>
+          </th>
+          <th @click="sortBy('sector')">
+            업종
+            <span class="sort-arrow">
+              {{ getSortArrow('sector') }}
+            </span>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -95,6 +166,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import axios from 'axios'
 
+
 const stocks = ref([])
 const loading = ref(true)
 const selectedSector = ref('')
@@ -107,10 +179,15 @@ const uniqueSectors = computed(() => {
   return sectors.filter(sector => sector && sector !== 'Nan').sort()
 })
 
-// filteredStocks computed 속성 수정
-const filteredStocks = computed(() => {
-  let filtered = stocks.value
+const updateSearchQuery = (event) => {
+  searchQuery.value = event.target.value
+}
 
+const filteredStocks = computed(() => {
+
+// filteredStocks computed 속성 수정
+  let filtered = stocks.value
+  
   // 검색어로 필터링
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
@@ -137,7 +214,7 @@ watch(searchQuery, () => {
 const paginatedStocks = computed(() => {
   const startIndex = (currentPage.value - 1) * itemsPerPage.value
   const endIndex = startIndex + itemsPerPage.value
-  return filteredStocks.value.slice(startIndex, endIndex)
+  return sortedStocks.value.slice(startIndex, endIndex)
 })
 
 const totalPages = computed(() => {
@@ -195,6 +272,41 @@ const getPriceChangeClass = (value) => {
   return value > 0 ? 'up' : 'down'
 }
 
+const sortKey = ref('')
+const sortOrder = ref('asc')
+
+const sortBy = (key) => {
+  if (sortKey.value === key) {
+    sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
+  } else {
+    sortKey.value = key
+    sortOrder.value = 'asc'
+  }
+}
+
+const getSortArrow = (key) => {
+  if (sortKey.value !== key) return '↕'
+  return sortOrder.value === 'asc' ? '↑' : '↓'
+}
+
+const sortedStocks = computed(() => {
+  return [...filteredStocks.value].sort((a, b) => {
+    let aValue = a[sortKey.value]
+    let bValue = b[sortKey.value]
+
+    if (typeof aValue === 'string') {
+      aValue = aValue.toLowerCase()
+      bValue = bValue.toLowerCase()
+    }
+
+    if (aValue < bValue) return sortOrder.value === 'asc' ? -1 : 1
+    if (aValue > bValue) return sortOrder.value === 'asc' ? 1 : -1
+    return 0
+  })
+})
+
+
+
 watch(selectedSector, () => {
   currentPage.value = 1
 })
@@ -225,7 +337,7 @@ onMounted(() => {
   border-radius: 8px;
   border: 1px solid rgba(240, 219, 55, 0.4);
   background: rgba(0, 0, 0, 0.2);
-  color: #f0db37;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 16px;
 }
 
@@ -243,6 +355,22 @@ onMounted(() => {
   font-size: 16px;
 }
 
+.sector-select option {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #f0db37;
+  padding: 12px;
+}
+
+/* 옵션에 마우스를 올렸을 때의 스타일 */
+.sector-select option:hover {
+  background-color: rgba(240, 219, 55, 0.2);
+}
+
+/* 선택된 옵션의 스타일 */
+.sector-select option:checked {
+  background-color: rgba(240, 219, 55, 0.3);
+}
+
 /* 테이블 컨테이너 */
 .table-container {
   max-width: 2000px;
@@ -251,7 +379,9 @@ onMounted(() => {
   overflow-y: auto;
   overflow-x: auto;
   border-radius: 15px;
-  background: rgba(0, 0, 0, 0.3);
+  /* background: rgba(0, 0, 0, 0.3); */
+  background: rgba(152, 149, 125, 0.1);
+
   backdrop-filter: blur(15px);
   border: 1px solid rgba(240, 219, 55, 0.2);
   padding: 10px, 10px, 0px, 10px;
@@ -406,5 +536,19 @@ onMounted(() => {
 
 .table-container::-webkit-scrollbar-thumb:hover {
   background: rgba(240, 219, 55, 0.5);
+}
+
+.sort-arrow {
+  margin-left: 5px;
+  color: #f0db37;
+  opacity: 0.5;
+}
+
+.stock-table th {
+  cursor: pointer;
+}
+
+.stock-table th:hover .sort-arrow {
+  opacity: 1;
 }
 </style>
