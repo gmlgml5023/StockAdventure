@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <h2>커뮤니티</h2>
-    <RouterLink :to="{ name: 'ArticleCreateView' }" class="create-button">Create</RouterLink>
+  <div class="article-container">
+    <h1 class="article-title">Space Community</h1>
+    <RouterLink :to="{ name: 'ArticleCreateView' }" class="create-button">
+      <span>새 글 작성</span>
+      <span class="star-icon">✨</span>
+    </RouterLink>
     <ArticleList />
   </div>
 </template>
@@ -20,9 +23,43 @@ onMounted(() => {
 </script>
 
 
-<style>
+<style scoped>
+.article-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.article-title {
+  color: #f0db37;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 32px;
+  text-shadow: 0 0 15px rgba(240, 219, 55, 0.6);
+}
+
+.create-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(45deg, rgba(240, 219, 55, 0.9), rgba(255, 209, 4, 0.9));
+  color: #000;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
 .create-button:hover {
-  background-color: #3aa876;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(240, 219, 55, 0.3);
+}
+
+.star-icon {
+  font-size: 18px;
 }
 </style>
-

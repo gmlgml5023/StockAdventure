@@ -14,12 +14,12 @@
         </div>
   
         <div class="form-group">
-          <label for="resolution">자기소개</label>
+          <label for="resolution">각오 한 마디 !</label>
           <textarea
             id="resolution"
             v-model="profileData.resolution"
             class="form-textarea"
-            placeholder="자기소개를 입력하세요"
+            placeholder="각오를 입력하세요"
             rows="4"
           ></textarea>
         </div>
