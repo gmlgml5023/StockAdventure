@@ -2,20 +2,20 @@
   <div id="app" class="app">
     <div class="nav-container">
       <a href="http://localhost:5173/" class="logo-link">
-        <h1 class="logo">StockAdventure</h1>
+        <h1 class="logo">Stock Venture</h1>
       </a>
       <nav v-if="authStore.isLogin" class="nav-menu">
-        <RouterLink to="/" class="nav-button">주식정보조회</RouterLink>
-        <RouterLink to="/stocks/recommendations/" class="nav-button">추천종목조회</RouterLink>
+        <RouterLink to="/" class="nav-button">추천종목조회</RouterLink>
+        <RouterLink to="/stocks/lists" class="nav-button">주식정보조회</RouterLink>
         <RouterLink to="/journals/" class="nav-button">매매일지</RouterLink>
         <RouterLink to="/articles/" class="nav-button">커뮤니티</RouterLink>
-        <RouterLink to="/investment_style/test" class="nav-button">투자 성향 테스트</RouterLink>
+        <!-- <RouterLink to="/investment_style/test" class="nav-button">투자 성향 테스트</RouterLink> -->
         <RouterLink 
           v-if="authStore.username" 
           :to="{ name: 'user-profile', params: { username: authStore.username } }" 
           class="nav-button"
         >마이페이지</RouterLink>
-        <button @click="logOut" class="nav-button logout-button">로그아웃</button>
+        <!-- <button @click="logOut" class="nav-button logout-button">로그아웃</button> -->
       </nav>
     </div>
     <RouterView />
@@ -54,7 +54,7 @@ const logOut = () => {
 
 .logo {
   color: #f0db37;
-  font-size: 32px;
+  font-size: 40px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;

@@ -58,13 +58,14 @@ defineProps({
 }
 
 .article-number {
-  color: #f0db37;
-  font-weight: bold;
+  color: #a1a09c;
+  font-weight: lighter;
+  font-size: 12px;
 }
 
 .article-author {
-  color: rgba(240, 219, 55, 0.7);
-  font-size: 14px;
+  color: #a1a09c;
+  font-size: 15px;
 }
 
 .article-title {
@@ -78,9 +79,9 @@ defineProps({
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  background: rgba(240, 219, 55, 0.1);
+  background: rgba(152, 149, 125, 0.1);
   border-radius: 8px;
-  color: #f0db37;
+  color: #a1a09c;
   text-decoration: none;
   transition: all 0.3s ease;
 }

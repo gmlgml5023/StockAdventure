@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
-import HomeView from "@/views/HomeView.vue";
+import StockListView from "@/views/StockListView.vue";
 import IntroView from "@/views/IntroView.vue";
 
 // Stocks
@@ -27,11 +27,13 @@ import UserProfileUpdateView from "@/views/UserProfileUpdateView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: "/", name: "home", component: HomeView, meta: { requiresAuth: true } },
+    { path: "/", name: "home", component: StockRecommendationView, meta: { requiresAuth: true } },
+    // { path: "/", name: "home", component: StockListView, meta: { requiresAuth: true } },
     { path: "/intro", name: "intro", component: IntroView },
 
     // Stocks
-    { path: "/stocks/recommendations/", name: "StockRecommendationView", component: StockRecommendationView, meta: { requiresAuth: true } },
+  
+    { path: "/stocks/lists/", name: "StockListView", component: StockListView, meta: { requiresAuth: true } },
 
     // Community
     { path: "/articles/", name: "ArticleView", component: ArticleView, meta: { requiresAuth: true } },
