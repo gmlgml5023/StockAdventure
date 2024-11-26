@@ -56,9 +56,8 @@ const logOut = () => {
   color: #f0db37;
   font-size: 32px;
   font-weight: bold;
-  margin-top: 20px;
+  text-align: center;
   margin-bottom: 20px;
-  margin-left: 20px;
   text-shadow: 0 0 15px rgba(240, 219, 55, 0.6);
 }
 
