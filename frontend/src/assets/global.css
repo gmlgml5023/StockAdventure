@@ -1,22 +1,23 @@
 /* Import fonts */
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap");
-
 @font-face {
-  font-family: "arita-dotum-Medium";
-  src: url("@/assets/fonts/arita-dotum-Medium.woff") format("woff");
+  font-family: "STUNNING-Bd";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/STUNNING-Bd.woff2")
+    format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 
 * {
+  font-family: "STUNNING-Bd", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "arita-dotum-Medium", sans-serif;
 }
 
 body {
-  background-image: url('@/assets/images/background_img.jpg');
+  background-image: url("@/assets/images/background_img.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -55,41 +56,95 @@ a:hover {
 }
 
 button {
-  background-color: transparent;
-  border: 2px solid #f0db37;
-  color: #f0db37;
-  padding: 10px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: "arita-dotum-Medium", sans-serif;
+  padding: 8px 16px; /* 10.5px 21px에서 축소 */
+  border-radius: 20px; /* 26px에서 축소 */
 }
-
 button:hover {
   background-color: rgba(240, 219, 55, 0.2);
   box-shadow: 0 0 15px #f0db37;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1200px; /* 1260px에서 축소 */
   margin: auto;
 }
 
 .card {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 21px; /* 21px에서 축소 */
 }
 
 .navbar {
-  background-color: #1a1a4a;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 8px; /* 10.5px에서 축소 */
 }
 
 input,
 textarea,
 select {
   font-family: "arita-dotum-Medium", sans-serif;
+}
+
+/* 스크롤 섹션을 위한 기본 스타일 */
+.scroll-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+/* 우주 배경 효과 */
+.space-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #1a1b4b 0%, #090a1e 100%);
+  z-index: -1;
+}
+
+/* 별똥별 애니메이션 */
+.shooting-star {
+  position: absolute;
+  background: linear-gradient(45deg, #f0db37, transparent);
+  animation: shooting 3s linear infinite;
+}
+
+@keyframes shooting {
+  0% {
+    transform: translateX(-100%) translateY(-100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200%) translateY(200%);
+    opacity: 0;
+  }
+}
+
+/* 섹션 전환 애니메이션 */
+.fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 우주선 아이콘 스타일 */
+.rocket-icon {
+  font-size: 3rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }

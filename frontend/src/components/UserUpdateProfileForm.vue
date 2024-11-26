@@ -1,7 +1,7 @@
 <template>
   <div class="update-profile">
-    <h2>회원정보 수정</h2>
-    <form @submit.prevent="updateProfile" class="update-form">
+    <h1 class="profile-title">프로필 수정</h1>
+    <form @submit.prevent="updateProfile" class="profile-form">
       <div class="form-group">
         <label for="nickname">닉네임</label>
         <input
@@ -9,23 +9,29 @@
           id="nickname"
           v-model="profileData.nickname"
           class="form-input"
+          placeholder="닉네임을 입력하세요"
         />
       </div>
 
       <div class="form-group">
-        <label for="resolution">자기소개</label>
+        <label for="resolution">각오 한마디 !</label>
         <textarea
           id="resolution"
           v-model="profileData.resolution"
-          class="form-input"
+          class="form-textarea"
+          placeholder="각오를 입력하세요"
           rows="4"
         ></textarea>
       </div>
 
       <div class="button-group">
-        <button type="submit" class="submit-button">저장</button>
+        <button type="submit" class="submit-button">
+          <span class="button-text">수정 완료</span>
+          <span class="star-icon">💫</span>
+        </button>
         <button type="button" @click="goBack" class="cancel-button">
-          취소
+          <span class="button-text">취소</span>
+          <span class="star-icon">✖</span>
         </button>
       </div>
     </form>
@@ -56,7 +62,6 @@ const profileData = ref({
   image: null,
 });
 
-// 프로필 정보 가져오기
 const fetchProfile = async () => {
   try {
     const response = await axios.get(
@@ -77,7 +82,6 @@ const fetchProfile = async () => {
   }
 };
 
-// 이미지 파일 처리
 const handleImageChange = (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -85,7 +89,6 @@ const handleImageChange = (event) => {
   }
 };
 
-// 프로필 업데이트
 const updateProfile = async () => {
   try {
     const formData = new FormData();
@@ -124,15 +127,23 @@ onMounted(() => {
 <style scoped>
 .update-profile {
   max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+  margin: auto;
+  margin-top: 50px;
+  padding: 30px;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(240, 219, 55, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0 32px rgba(240, 219, 55, 0.05);
 }
 
-.update-form {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.profile-title {
+  color: #f0db37;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  text-shadow: 0 0 15px rgba(240, 219, 55, 0.6);
 }
 
 .form-group {
@@ -140,50 +151,92 @@ onMounted(() => {
 }
 
 label {
+  color: #f0db37;
+  margin-bottom: 8px;
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  font-weight: 500;
+  text-shadow: 0 0 8px rgba(240, 219, 55, 0.4);
 }
 
-.form-input {
+.form-input,
+.form-textarea {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-top: 5px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(240, 219, 55, 0.4);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
-.investment-style {
-  color: #666;
-  margin: 5px 0;
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
 }
 
-small {
-  color: #666;
-  font-size: 0.8em;
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #f0db37;
+  box-shadow: 0 0 15px rgba(240, 219, 55, 0.2);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .button-group {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   margin-top: 20px;
 }
 
 .submit-button,
 .cancel-button {
-  padding: 10px 20px;
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
   border: none;
-  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .submit-button {
-  background-color: #4caf50;
-  color: white;
+  background: linear-gradient(
+    45deg,
+    rgba(240, 219, 55, 0.9),
+    rgba(255, 209, 4, 0.9)
+  );
+  color: #000;
 }
 
 .cancel-button {
-  background-color: #f44336;
-  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  color: #f0db37;
+  border: 1px solid rgba(240, 219, 55, 0.4);
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(240, 219, 55, 0.3);
+}
+
+.cancel-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.star-icon {
+  font-size: 18px;
 }
 </style>

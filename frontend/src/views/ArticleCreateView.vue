@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>게시글 작성</h1>
+    <!-- <h1>게시글 작성</h1> -->
     <ArticleCreateForm @create-complete="handleCreateComplete" />
   </div>
 </template>
@@ -12,3 +12,9 @@ const handleCreateComplete = () => {
   console.log('게시글이 작성되었습니다.')
 }
 </script>
+
+<style scoped>
+div {
+  margin-top: 50px;
+}
+</style>

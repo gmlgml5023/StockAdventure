@@ -1,152 +1,129 @@
 <template>
-  <div class="mypage">
-    <div class="profile-section">
-      <div class="profile-image">
-        <img :src="characterImage" :alt="investmentStyle" />
-      </div>
-      <div class="profile-info">
-        <h2>{{ profile_username }}</h2>
-        <p class="investment-style">{{ investmentStyle }}</p>
-        <p class="resolution" v-if="resolution">{{ resolution }}</p>
-        <p class="resolution" v-else>각오가 아직 작성되지 않았습니다.</p>
-      </div>
-      <div class="button-group">
-        <button @click="editProfile" class="edit-button">회원정보 수정</button>
-        <router-link :to="{ name: 'user-journal', params: { username: props.username } }" class="journal-button">
-          매매일지 목록
-        </router-link>
+  <div class="profile-view">
+    <div class="content-wrapper">
+      <UserProfile :username="username" />
+
+      <div class="menu-container">
+        <RouterLink to="/investment_style/test" class="menu-item">
+          투자 성향 검사 다시 하기
+        </RouterLink>
+        <button @click="confirmLogOut" class="menu-item logout-button">
+          로그 아웃
+        </button>
+        <button @click="withdrawAccount" class="menu-item withdraw-button">
+          회원 탈퇴
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import axios from "axios";
-import { useAuthStore } from "@/stores/auth";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
+import UserProfile from '@/components/UserProfile.vue'
 
-const authStore = useAuthStore();
-const token = authStore.token;
-const router = useRouter();
+const route = useRoute()
+const router = useRouter()
+const authStore = useAuthStore()
+const username = route.params.username
 
-
-const profile_username = ref("");
-const investmentStyle = ref("");
-const characterImage = ref("");
-const nickname = ref("");
-const resolution = ref("");
-
-const props = defineProps({
-  username: {
-    type: String,
-    required: true,
-  },
-});
-
-const fetchProfile = async () => {
-  try {
-    const response = await axios.get(
-      `http://127.0.0.1:8000/accounts/${props.username}/`,
-      {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      }
-    );
-    profile_username.value = response.data.username;
-    nickname.value = response.data.nickname;
-    investmentStyle.value = response.data.investment_style;
-    resolution.value = response.data.resolution;
-    // 투자 스타일 ID에 따라 캐릭터 이미지 설정
-    const styleId = response.data.image.split("_")[1].split(".")[0];
-    // characterImage.value = `/images/${getCharacterImage(parseInt(styleId))}`;
-    characterImage.value = response.data.image;
-
-    console.log("Server response:", response.data);
-    console.log("Style ID:", styleId);
-    console.log("Character Image:", characterImage.value);
-  } catch (error) {
-    console.error("프로필 로딩 실패:", error);
+const confirmLogOut = () => {
+  if (confirm('정말 로그아웃하시겠습니까?')) {
+    authStore.logOut();
   }
 };
 
-const editProfile = () => {
-  // 회원정보 수정 페이지로 이동
-  router.push(`/accounts/${props.username}/update`);
-};
-
-const goToJournalList = () => {
-  // 매매일지 목록 페이지로 이동
-  router.push('/journals/');
-};
-
-onMounted(() => {
-  fetchProfile();
-});
+const withdrawAccount = async () => {
+  if (confirm('정말로 회원 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
+    try {
+      // 회원 탈퇴 API 호출
+      await authStore.withdrawAccount()
+      router.push('/login')
+    } catch (error) {
+      console.error('회원 탈퇴 실패:', error)
+    }
+  }
+}
 </script>
 
 <style scoped>
-.mypage {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.profile-section {
+.profile-view {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: url('@/assets/space-background.jpg') no-repeat center center fixed;
+  background-size: cover;
   display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.profile-image img {
-  width: 120px;
-  height: 120px;
-  border-radius: 60px;
-  object-fit: cover;
-}
-
-.profile-info {
-  flex-grow: 1;
-}
-
-.investment-style {
-  color: #666;
-  margin-top: 8px;
-}
-
-.resolution {
-  color: #666;
-  margin-top: 8px;
-  font-size: 0.9em;
-  line-height: 1.4;
-}
-
-.button-group {
+.content-wrapper {
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
 }
 
-.edit-button,
-.journal-button {
-  padding: 10px 20px;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
   width: 100%;
 }
 
-.edit-button {
-  background-color: #4caf50;
+.menu-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
 }
 
-.journal-button {
-  background-color: #2196F3;
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.logout-button {
+  background-color: rgba(255, 193, 7, 0.2);
+  border-color: rgba(255, 193, 7, 0.4);
+  color: #ffc107;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 193, 7, 0.3);
+  box-shadow: 0 10px 20px rgba(255, 193, 7, 0.2);
+}
+
+.withdraw-button {
+  background-color: rgba(220, 53, 69, 0.2);
+  border-color: rgba(220, 53, 69, 0.4);
+  color: #dc3545;
+}
+
+.withdraw-button:hover {
+  background-color: rgba(220, 53, 69, 0.3);
+  box-shadow: 0 10px 20px rgba(220, 53, 69, 0.2);
+}
+
+@media (max-width: 768px) {
+  .menu-container {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

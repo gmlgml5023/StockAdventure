@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h2>매매일지 작성</h2>
+      <!-- <h2>매매일지 작성</h2> -->
       <JournalCreateForm @create-complete="handleCreateComplete" />
     </div>
   </template>
@@ -12,3 +12,9 @@
     console.log('매매일지가 작성되었습니다.')
   }
   </script>
+
+<style scoped>
+div {
+  margin-top: 50px;
+}
+</style>

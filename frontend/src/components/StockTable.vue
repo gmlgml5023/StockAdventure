@@ -4,7 +4,8 @@
     <!-- 왼쪽 검색창 -->
     <div class="search-box">
       <input 
-        v-model="searchQuery" 
+        :value="searchQuery"
+        @input="updateSearchQuery"
         type="text" 
         placeholder="종목명 검색..." 
         class="search-input"
@@ -21,7 +22,7 @@
       </select>
     </div>
   </div>
-
+    <div class="table-container">
     <div v-if="loading" class="loading-message">
       주식 데이터를 불러오는 중입니다...
     </div>
@@ -29,27 +30,90 @@
     <table v-else class="stock-table">
       <thead>
         <tr>
-          <th>종목코드</th>
-          <th>종목명</th>
-          <th>현재가</th>
-          <th>등락</th>
-          <th>등락율</th>
-          <th>거래량</th>
-          <th>거래대금</th>
-          <th>시가총액</th>
-          <th>발행주식수</th>
-          <th>베타</th>
-          <th>부채비율</th>
-          <th>유보율</th>
-          <th>매출액증가율</th>
-          <th>EPS증가율</th>
-          <th>ROA</th>
-          <th>ROE</th>
-          <th>EPS</th>
-          <th>BPS</th>
-          <th>PER</th>
-          <th>PBR</th>
-          <th>업종</th>
+          <th @click="sortBy('stock_id')">
+            종목코드
+            <span class="sort-arrow">
+              {{ getSortArrow('stock_id') }}
+            </span>
+          </th>
+          <th @click="sortBy('stock_name')">
+            종목명
+            <span class="sort-arrow">
+              {{ getSortArrow('stock_name') }}
+            </span>
+          </th>
+          <th @click="sortBy('current_price')">
+            현재가
+            <span class="sort-arrow">
+              {{ getSortArrow('current_price') }}
+            </span>
+          </th>
+          <th @click="sortBy('price_change')">
+            등락
+            <span class="sort-arrow">
+              {{ getSortArrow('price_change') }}
+            </span>
+          </th>
+          <th @click="sortBy('price_change_rate')">
+            등락율
+            <span class="sort-arrow">
+              {{ getSortArrow('price_change_rate') }}
+            </span>
+          </th>
+          <th @click="sortBy('volume')">
+            거래량
+            <span class="sort-arrow">
+              {{ getSortArrow('volume') }}
+            </span>
+          </th>
+          <th @click="sortBy('beta')">
+            베타
+            <span class="sort-arrow">
+              {{ getSortArrow('beta') }}
+            </span>
+          </th>
+          <th @click="sortBy('roa')">
+            ROA
+            <span class="sort-arrow">
+              {{ getSortArrow('roa') }}
+            </span>
+          </th>
+          <th @click="sortBy('roe')">
+            ROE
+            <span class="sort-arrow">
+              {{ getSortArrow('roe') }}
+            </span>
+          </th>
+          <th @click="sortBy('eps')">
+            EPS
+            <span class="sort-arrow">
+              {{ getSortArrow('eps') }}
+            </span>
+          </th>
+          <th @click="sortBy('bps')">
+            BPS
+            <span class="sort-arrow">
+              {{ getSortArrow('bps') }}
+            </span>
+          </th>
+          <th @click="sortBy('per')">
+            PER
+            <span class="sort-arrow">
+              {{ getSortArrow('per') }}
+            </span>
+          </th>
+          <th @click="sortBy('pbr')">
+            PBR
+            <span class="sort-arrow">
+              {{ getSortArrow('pbr') }}
+            </span>
+          </th>
+          <th @click="sortBy('sector')">
+            업종
+            <span class="sort-arrow">
+              {{ getSortArrow('sector') }}
+            </span>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -64,14 +128,7 @@
             {{ formatPercent(stock.price_change_rate) }}
           </td>
           <td class="number">{{ formatVolume(stock.volume) }}</td>
-          <td class="number">{{ formatCapital(stock.trading_value) }}</td>
-          <td class="number">{{ formatCapital(stock.market_cap) }}</td>
-          <td class="number">{{ formatVolume(stock.issued_shares) }}</td>
           <td class="number">{{ formatDecimal(stock.beta) }}</td>
-          <td class="number">{{ formatPercent(stock.debt_ratio) }}</td>
-          <td class="number">{{ formatPercent(stock.retention_ratio) }}</td>
-          <td class="number">{{ formatPercent(stock.revenue_growth_rate) }}</td>
-          <td class="number">{{ stock.eps_growth_rate }}</td>
           <td class="number">{{ formatPercent(stock.roa) }}</td>
           <td class="number">{{ formatPercent(stock.roe) }}</td>
           <td class="number">{{ formatDecimal(stock.eps) }}</td>
@@ -82,7 +139,7 @@
         </tr>
       </tbody>
     </table>
-
+    </div>
     <div class="pagination">
       <button 
         :disabled="currentPage === 1" 
@@ -109,6 +166,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import axios from 'axios'
 
+
 const stocks = ref([])
 const loading = ref(true)
 const selectedSector = ref('')
@@ -121,10 +179,15 @@ const uniqueSectors = computed(() => {
   return sectors.filter(sector => sector && sector !== 'Nan').sort()
 })
 
-// filteredStocks computed 속성 수정
-const filteredStocks = computed(() => {
-  let filtered = stocks.value
+const updateSearchQuery = (event) => {
+  searchQuery.value = event.target.value
+}
 
+const filteredStocks = computed(() => {
+
+// filteredStocks computed 속성 수정
+  let filtered = stocks.value
+  
   // 검색어로 필터링
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
@@ -151,7 +214,7 @@ watch(searchQuery, () => {
 const paginatedStocks = computed(() => {
   const startIndex = (currentPage.value - 1) * itemsPerPage.value
   const endIndex = startIndex + itemsPerPage.value
-  return filteredStocks.value.slice(startIndex, endIndex)
+  return sortedStocks.value.slice(startIndex, endIndex)
 })
 
 const totalPages = computed(() => {
@@ -209,6 +272,41 @@ const getPriceChangeClass = (value) => {
   return value > 0 ? 'up' : 'down'
 }
 
+const sortKey = ref('')
+const sortOrder = ref('asc')
+
+const sortBy = (key) => {
+  if (sortKey.value === key) {
+    sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
+  } else {
+    sortKey.value = key
+    sortOrder.value = 'asc'
+  }
+}
+
+const getSortArrow = (key) => {
+  if (sortKey.value !== key) return '↕'
+  return sortOrder.value === 'asc' ? '↑' : '↓'
+}
+
+const sortedStocks = computed(() => {
+  return [...filteredStocks.value].sort((a, b) => {
+    let aValue = a[sortKey.value]
+    let bValue = b[sortKey.value]
+
+    if (typeof aValue === 'string') {
+      aValue = aValue.toLowerCase()
+      bValue = bValue.toLowerCase()
+    }
+
+    if (aValue < bValue) return sortOrder.value === 'asc' ? -1 : 1
+    if (aValue > bValue) return sortOrder.value === 'asc' ? 1 : -1
+    return 0
+  })
+})
+
+
+
 watch(selectedSector, () => {
   currentPage.value = 1
 })
@@ -221,86 +319,158 @@ onMounted(() => {
 <style scoped>
 /* 필터 섹션 스타일링 */
 .filter-section {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(240, 219, 55, 0.2);
+  border-radius: 15px;
   display: flex;
-  justify-content: space-between;  /* 요소들을 양끝으로 분산 */
+  justify-content: space-between;
   align-items: center;
-  margin: 20px 0;
-  padding: 0 20px;
-  gap: 20px;  /* 요소들 사이 간격 */
-}
-
-.search-box {
-  width: 300px;  /* 검색창 너비 고정 */
 }
 
 .search-input {
-  width: 100%;
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
+  width: 300px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(240, 219, 55, 0.4);
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .sector-select {
-  padding: 8px 12px;
+  padding: 12px;
   min-width: 200px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(240, 219, 55, 0.4);
+  background: rgba(0, 0, 0, 0.2);
+  color: #f0db37;
+  font-size: 16px;
+}
+
+.sector-select option {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #f0db37;
+  padding: 12px;
+}
+
+/* 옵션에 마우스를 올렸을 때의 스타일 */
+.sector-select option:hover {
+  background-color: rgba(240, 219, 55, 0.2);
+}
+
+/* 선택된 옵션의 스타일 */
+.sector-select option:checked {
+  background-color: rgba(240, 219, 55, 0.3);
+}
+
+/* 테이블 컨테이너 */
+.table-container {
+  max-width: 2000px;
+  margin: 0 auto;
+  height: 70vh;
+  overflow-y: auto;
+  overflow-x: auto;
+  border-radius: 15px;
+  /* background: rgba(0, 0, 0, 0.3); */
+  background: rgba(152, 149, 125, 0.1);
+
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(240, 219, 55, 0.2);
+  padding: 10px, 10px, 0px, 10px;
 }
 
 /* 테이블 스타일링 */
 .stock-table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  font-size: 14px;
-}
-
-.stock-table th,
-.stock-table td {
-  padding: 12px;
-  border: 1px solid #ddd;
-  text-align: left;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 .stock-table th {
-  background-color: #f5f5f5;
-  font-weight: bold;
   position: sticky;
   top: 0;
   z-index: 1;
+  padding: 15px;
+  background: rgba(0, 0, 0, 1);
+  color: #f0db37;
+  font-weight: bold;
+  text-align: left;
+  border-bottom: 2px solid rgba(240, 219, 55, 0.2);
 }
 
-.stock-table .number {
-  text-align: right;
+.stock-table td {
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  color: rgba(255, 255, 255, 0.8);
 }
 
-.stock-row:hover {
-  background-color: #f8f9fa;
+
+/* 각 열의 너비 고정 */
+.stock-table th,
+.stock-table td {
+  white-space: nowrap;
 }
 
-/* 상태 메시지 스타일링 */
-.loading-message {
-  text-align: center;
-  padding: 40px;
-  color: #666;
-  font-size: 16px;
+.stock-table th:nth-child(1),
+.stock-table td:nth-child(1) {
+  width: 100px; /* 종목코드 */
 }
 
-/* 가격 변동 색상 */
+.stock-table th:nth-child(2),
+.stock-table td:nth-child(2) {
+  width: 150px; /* 종목명 */
+}
+
+.stock-table th:nth-child(3),
+.stock-table td:nth-child(3) {
+  width: 100px; /* 현재가 */
+}
+
+.stock-table th:nth-child(4),
+.stock-table td:nth-child(4),
+.stock-table th:nth-child(5),
+.stock-table td:nth-child(5) {
+  width: 80px; /* 등락, 등락율 */
+}
+
+.stock-table th:nth-child(6),
+.stock-table td:nth-child(6) {
+  width: 100px; /* 거래량 */
+}
+
+.stock-table th:nth-child(n+7),
+.stock-table td:nth-child(n+7) {
+  width: 120px; /* 나머지 항목들 */
+}
+
+.stock-row {
+  transition: all 0.3s ease;
+}
+
+.stock-row:hover td {
+  background: rgba(240, 219, 55, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(240, 219, 55, 0.1);
+}
+
+/* 가격 변동 색상 수정 */
 .up {
-  color: #d24f45;
+  color: #ff4757 !important; /* 빨간색 */
   font-weight: bold;
 }
 
 .down {
-  color: #1261c4;
+  color: #1261c4 !important; /* 파란색 */
   font-weight: bold;
-}
-
-.neutral {
-  color: #000;
 }
 
 /* 페이지네이션 스타일링 */
@@ -313,24 +483,72 @@ onMounted(() => {
 }
 
 .page-button {
-  padding: 8px 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(240, 219, 55, 0.4);
+  background: rgba(0, 0, 0, 0.3);
+  color: #f0db37;
   cursor: pointer;
-}
-
-.page-button:disabled {
-  background-color: #f5f5f5;
-  cursor: not-allowed;
+  transition: all 0.3s ease;
 }
 
 .page-button:hover:not(:disabled) {
-  background-color: #f8f9fa;
+  background: rgba(240, 219, 55, 0.2);
+  transform: translateY(-2px);
+}
+
+.page-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .page-info {
-  font-size: 14px;
-  color: #666;
+  color: #f0db37;
+  font-size: 16px;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 40px;
+  color: #f0db37;
+  font-size: 18px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+/* 스크롤바 스타일링 */
+.table-container::-webkit-scrollbar {
+  width: 8px;  /* 세로 스크롤바 너비 */
+  height: 0;   /* 가로 스크롤바 높이를 0으로 설정하여 숨김 */
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: rgba(240, 219, 55, 0.3);
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(240, 219, 55, 0.5);
+}
+
+.sort-arrow {
+  margin-left: 5px;
+  color: #f0db37;
+  opacity: 0.5;
+}
+
+.stock-table th {
+  cursor: pointer;
+}
+
+.stock-table th:hover .sort-arrow {
+  opacity: 1;
 }
 </style>
