@@ -3,7 +3,7 @@
     "model": "investment_style.stylequestion",
     "pk": 1,
     "fields": {
-      "question_text": "투자 기간은 어느 정도로 생각하고 계십니까?"
+      "question_text": "투자 기간은 얼마나 생각하고 계신가요?"
     }
   },
   {
@@ -46,7 +46,7 @@
     "model": "investment_style.stylequestion",
     "pk": 2,
     "fields": {
-      "question_text": "투자의 주된 목표는 무엇입니까?"
+      "question_text": "투자의 주된 목표는 무엇인가요?"
     }
   },
   {
@@ -89,7 +89,7 @@
     "model": "investment_style.stylequestion",
     "pk": 3,
     "fields": {
-      "question_text": "다음 중 당신의 수입원을 가장 잘 나타내고 있는 것은 어느 것입니까?"
+      "question_text": "현재의 수입 상황을 가장 잘 설명하는 것은 무엇인가요?"
     }
   },
   {
@@ -97,7 +97,7 @@
     "pk": 9,
     "fields": {
       "question": 3,
-      "choice_text": "현재 안정적인 수입이 있으며, 향후 크게 증가할 것으로 예상",
+      "choice_text": "현재 안정적인 수입이 있으며, 앞으로 크게 증가할 것으로 기대됨",
       "style_points": 1
     }
   },
@@ -106,7 +106,7 @@
     "pk": 10,
     "fields": {
       "question": 3,
-      "choice_text": "현재 일정한 수입이 발생하고 있으며, 향후 현재 수준을 유지하거나 약간 증가할 것으로 예상",
+      "choice_text": "현재 일정한 수입이 발생하고 있으며, 앞으로도 현재 수준을 유지하거나 조금 증가할 것으로 예상됨",
       "style_points": 2
     }
   },
@@ -115,7 +115,7 @@
     "pk": 11,
     "fields": {
       "question": 3,
-      "choice_text": "현재 일정한 수입이 발생하고 있으나, 향후 감소하거나 불안정할 것으로 예상",
+      "choice_text": "현재 일정한 수입이 있지만, 앞으로 감소하거나 불안정해질 가능성이 있음",
       "style_points": 3
     }
   },
@@ -124,7 +124,7 @@
     "pk": 12,
     "fields": {
       "question": 3,
-      "choice_text": "현재 일정한 수입원이 없으며, 연금이나 저축이 주 수입원임",
+      "choice_text": "현재 일정한 수입원이 없으며, 연금이나 저축이 주요 수입원임",
       "style_points": 4
     }
   },
@@ -132,7 +132,7 @@
     "model": "investment_style.stylequestion",
     "pk": 4,
     "fields": {
-      "question_text": "주식 투자에 할애할 수 있는 자산 비중"
+      "question_text": "주식 투자에 할당할 수 있는 자산의 비율은 어느 정도인가요?"
     }
   },
   {
@@ -175,7 +175,7 @@
     "model": "investment_style.stylequestion",
     "pk": 5,
     "fields": {
-      "question_text": "주식 가치가 30% 하락했을 때의 반응"
+      "question_text": "주식 가치가 30% 하락했을 때 어떻게 하실 건가요?"
     }
   },
   {
@@ -218,7 +218,7 @@
     "model": "investment_style.stylequestion",
     "pk": 6,
     "fields": {
-      "question_text": "선호하는 투자 전략"
+      "question_text": "어떤 투자 전략을 선호하시나요?"
     }
   },
   {
@@ -261,7 +261,7 @@
     "model": "investment_style.stylequestion",
     "pk": 7,
     "fields": {
-      "question_text": "원금 손실에 대해 어떻게 생각하십니까?"
+      "question_text": "원금 손실에 대해 어떻게 생각하시나요?"
     }
   },
   {
