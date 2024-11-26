@@ -1,16 +1,30 @@
 <template>
   <div class="investment-test">
-    <h1 class="test-title">투자 성향 테스트</h1>
+    <h1 class="test-title">투자 성향 검사</h1>
     <div v-if="loading">로딩 중...</div>
     <div v-else-if="currentQuestion" class="test-container">
       <!-- 진행 상황 표시 -->
       <div class="progress-container">
         <div class="progress-bar">
           <div class="stars">
-            <span v-for="n in 7" :key="n" class="star" :class="{ 'active': n < currentQuestionNum }">⭐</span>
+            <span
+              v-for="n in 7"
+              :key="n"
+              class="star"
+              :class="{ active: n < currentQuestionNum }"
+              >⭐</span
+            >
           </div>
-          <div class="rocket" :style="{ left: getRocketPosition(currentQuestionNum) }">🚀</div>
-          <div class="progress-fill" :style="{ width: getProgressWidth(currentQuestionNum) }"></div>
+          <div
+            class="rocket"
+            :style="{ left: getRocketPosition(currentQuestionNum) }"
+          >
+            🚀
+          </div>
+          <div
+            class="progress-fill"
+            :style="{ width: getProgressWidth(currentQuestionNum) }"
+          ></div>
         </div>
       </div>
 
@@ -149,25 +163,24 @@ const selectAnswer = (choiceId) => {
 const getRocketPosition = (questionNum) => {
   const positions = [4.3, 18.6, 33.65, 49, 64.3, 79.8, 95.7];
   const position = positions[questionNum - 1];
-  
+
   return `${position}%`;
 };
 
 const getProgressWidth = (questionNum) => {
   const positions = [4.3, 18.6, 33.65, 49, 64.3, 79.8, 95.7];
   const position = positions[questionNum - 1];
-  
+
   // 마지막 문항에서는 게이지가 100% 차도록 조정
   if (questionNum === 7) {
-    return '100%';
+    return "100%";
   }
-  
+
   return `${position}%`;
 };
 </script>
 
 <style scoped>
-
 h1 {
   margin-top: 40px;
 }
@@ -176,7 +189,6 @@ body {
   background-color: #0c0f2e;
   color: #ffffff;
 }
-
 
 .test-title {
   color: #f0db37;

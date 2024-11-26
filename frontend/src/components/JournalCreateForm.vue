@@ -4,32 +4,32 @@
     <form @submit.prevent="handleSubmit" class="journal-form">
       <div class="form-group">
         <label for="stock_name">종목명</label>
-        <input 
-          type="text" 
-          id="stock_name" 
-          v-model.trim="formData.stock_name" 
+        <input
+          type="text"
+          id="stock_name"
+          v-model.trim="formData.stock_name"
           required
           class="form-input"
           placeholder="종목명을 입력하세요"
-        >
+        />
       </div>
 
       <div class="form-group">
         <label for="transaction_date">거래일자</label>
-        <input 
-          type="date" 
-          id="transaction_date" 
-          v-model="formData.transaction_date" 
+        <input
+          type="date"
+          id="transaction_date"
+          v-model="formData.transaction_date"
           required
           class="form-input"
-        >
+        />
       </div>
 
       <div class="form-group">
         <label for="buysell">거래유형</label>
-        <select 
-          id="buysell" 
-          v-model="formData.buysell" 
+        <select
+          id="buysell"
+          v-model="formData.buysell"
           required
           class="form-input"
         >
@@ -40,33 +40,33 @@
 
       <div class="form-group">
         <label for="quantity">거래수량</label>
-        <input 
-          type="number" 
-          id="quantity" 
-          v-model.number="formData.quantity" 
+        <input
+          type="number"
+          id="quantity"
+          v-model.number="formData.quantity"
           required
           class="form-input"
           placeholder="수량을 입력하세요"
-        >
+        />
       </div>
 
       <div class="form-group">
         <label for="price">거래가격</label>
-        <input 
-          type="number" 
-          id="price" 
-          v-model.number="formData.price" 
+        <input
+          type="number"
+          id="price"
+          v-model.number="formData.price"
           required
           class="form-input"
           placeholder="가격을 입력하세요"
-        >
+        />
       </div>
 
       <div class="form-group">
         <label for="reason">매매이유</label>
-        <textarea 
-          id="reason" 
-          v-model.trim="formData.reason" 
+        <textarea
+          id="reason"
+          v-model.trim="formData.reason"
           required
           class="form-textarea"
           placeholder="매매 이유를 작성해주세요"
@@ -75,9 +75,9 @@
 
       <div class="form-group">
         <label for="feedback">피드백</label>
-        <textarea 
-          id="feedback" 
-          v-model.trim="formData.feedback" 
+        <textarea
+          id="feedback"
+          v-model.trim="formData.feedback"
           required
           class="form-textarea"
           placeholder="매매에 대한 피드백을 작성해주세요"
@@ -93,43 +93,43 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useJournalStore } from '@/stores/journal'
-import axios from 'axios'
-import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/stores/auth'
+import { ref } from "vue";
+import { useJournalStore } from "@/stores/journal";
+import axios from "axios";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/auth";
 
-const emit = defineEmits(['create-complete'])
-const store = useJournalStore()
-const router = useRouter()
-const authStore = useAuthStore()
+const emit = defineEmits(["create-complete"]);
+const store = useJournalStore();
+const router = useRouter();
+const authStore = useAuthStore();
 
 const formData = ref({
-  stock_name: '',
-  transaction_date: '',
-  buysell: '매수',
+  stock_name: "",
+  transaction_date: "",
+  buysell: "매수",
   quantity: 0,
   price: 0,
-  reason: '',
-  feedback: ''
-})
+  reason: "",
+  feedback: "",
+});
 
 const handleSubmit = async () => {
   try {
     await axios({
-      method: 'post',
+      method: "post",
       url: `${store.API_URL}/journals/`,
       data: formData.value,
       headers: {
-        'Authorization': `Token ${authStore.token}`
-      }
-    })
-    emit('create-complete')
-    router.push({ name: 'JournalView' })
+        Authorization: `Token ${authStore.token}`,
+      },
+    });
+    emit("create-complete");
+    router.push({ name: "JournalView" });
   } catch (err) {
-    console.error('매매일지 작성 실패:', err)
+    console.error("매매일지 작성 실패:", err);
   }
-}
+};
 </script>
 
 <style scoped>
@@ -141,8 +141,7 @@ const handleSubmit = async () => {
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(15px);
   border: 1px solid rgba(240, 219, 55, 0.2);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.3),
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
     inset 0 0 32px rgba(240, 219, 55, 0.05);
 }
 
@@ -166,13 +165,14 @@ label {
   text-shadow: 0 0 8px rgba(240, 219, 55, 0.4);
 }
 
-.form-input, .form-textarea {
+.form-input,
+.form-textarea {
   width: 100%;
   padding: 12px;
   border-radius: 8px;
   border: 1px solid rgba(240, 219, 55, 0.4);
   background-color: rgba(0, 0, 0, 0.8);
-  color: rgba(255, 255, 255, 0.5);;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 16px;
   transition: all 0.3s ease;
   backdrop-filter: blur(5px);
@@ -201,8 +201,9 @@ label {
   padding: 12px;
   border-radius: 8px;
   border: none;
-  background: linear-gradient(45deg, 
-    rgba(240, 219, 55, 0.9), 
+  background: linear-gradient(
+    45deg,
+    rgba(240, 219, 55, 0.9),
     rgba(255, 209, 4, 0.9)
   );
   color: #000;
@@ -220,8 +221,9 @@ label {
 .submit-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(240, 219, 55, 0.3);
-  background: linear-gradient(45deg, 
-    rgba(240, 219, 55, 1), 
+  background: linear-gradient(
+    45deg,
+    rgba(240, 219, 55, 1),
     rgba(255, 209, 4, 1)
   );
 }
@@ -233,13 +235,10 @@ label {
 select.form-input {
   appearance: none;
   background-image: linear-gradient(45deg, transparent 50%, #f0db37 50%),
-                    linear-gradient(135deg, #f0db37 50%, transparent 50%);
-  background-position: 
-    calc(100% - 20px) calc(1em + 2px),
+    linear-gradient(135deg, #f0db37 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px),
     calc(100% - 15px) calc(1em + 2px);
-  background-size: 
-    5px 5px,
-    5px 5px;
+  background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
 }
 
