@@ -1,4 +1,14 @@
-# StockAdventure : 투자자 성향별 종목 추천 서비스
+# StockVenture : 투자자 성향별 종목 추천 서비스
+[StockVenture 노션 페이지](https://isaacshin.notion.site/b288a96adc3048adbb069709339b3699?pvs=73)
+
+<br>
+
+| 이름   | 역할          | GitHub        |
+|--------|---------------|---------------|
+| 황예원 | 유저 관련 기능, 투자 성향 검사 기능, 컨셉 및 캐릭터 스케치, ERD 설계 | [@yeahhh1e](https://github.com/yeahhh1e) |
+| 김가희 | 주식 데이터 수집 및 처리, 매매일지 기능, 커뮤니티 기능, ERD 설계  | [@gmlgml5023](https://github.com/gmlgml5023) |
+
+<br>
 
 ## 1. 서비스 개요
 
@@ -6,7 +16,7 @@
 
 ## 2. 주요 기능
 
-### 1) 투자자 성향 검사를 통한 종목 추천
+### 1) 투자자 성향 검사를 통한 맞춤형 종목 추천
 
 - 투자자의 위험 감수 성향 분석을 위해 설문지 형태의 투자자 성향 테스트 제공
 - 투자자 성향 종류
@@ -41,26 +51,9 @@
 - 성향에 맞는 투자 전략, 종목 추천, 시장 전망 등 공유 가능
 - 투자 성향으로 회원 분류 (회원 닉네임 앞에 이모티콘)
 
+## 3. 기술 스택
+- Fontend : Vue, JavaScript
+- Backend : Django
+- Database : SQLite
 
-## 3. git branch
-```
-└── master
-    ├── hotfix                                # 긴급 수정 브랜치
-    └── develop
-        ├── feat/user
-        │   ├── feat/user-signup              # 회원가입
-        │   ├── feat/user-login               # 로그인
-        │   ├── feat/user-logout              # 로그아웃
-        │   ├── feat/user-update              # 회원정보 수정
-        │   └── feat/user-signout             # 회원탈퇴
-        ├── feat-investmenttest               # 투자 성향 검사
-        ├── feat/stock
-        │   ├── feat/stock-all                # 여러 종목 비교
-        │   └── feat/stock-detail             # 상세 종목 조회
-        ├── feat/journal                      # 매매일지
-        ├── feat/article
-        │   ├── feat/article-crud             # 커뮤니티 게시글 CRUD
-        │   ├── feat/article-comment          # 댓글 작성
-        │   └── feat/article-like             # 좋아요 기능
-        └── feat/mypage                       # 마이페이지
-        ```
+
