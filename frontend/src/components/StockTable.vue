@@ -119,7 +119,12 @@
       <tbody>
         <tr v-for="stock in paginatedStocks" :key="stock.stock_id" class="stock-row">
           <td>{{ stock.stock_id }}</td>
-          <td>{{ stock.stock_name }}</td>
+          <td>
+            <span @click="goToNaverStock(stock.stock_id)" class="stock-name">
+              {{ stock.stock_name }}
+              <span class="link-icon">🔗</span>
+            </span>  
+          </td>
           <td class="number">{{ formatPrice(stock.current_price) }}</td>
           <td class="number" :class="getPriceChangeClass(stock.price_change)">
             {{ formatPriceChange(stock.price_change) }}
@@ -173,6 +178,10 @@ const selectedSector = ref('')
 const currentPage = ref(1)
 const itemsPerPage = ref(20)
 const searchQuery = ref('')  // 검색어 상태 추가
+
+function goToNaverStock(stockId) {
+  window.open(`https://finance.naver.com/item/main.nhn?code=${stockId}`, '_blank');
+}
 
 const uniqueSectors = computed(() => {
   const sectors = [...new Set(stocks.value.map(stock => stock.sector))]
@@ -317,6 +326,16 @@ onMounted(() => {
 </script>
 
 <style scoped>
+
+.stock-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #f0db37;
+  transition: all 0.3s ease;
+}
+
 /* 필터 섹션 스타일링 */
 .filter-section {
   max-width: 1200px;
@@ -390,6 +409,7 @@ onMounted(() => {
 /* 테이블 스타일링 */
 .stock-table {
   width: 100%;
+  min-width: 1500px; /* 테이블 최소 너비 설정 */
   border-collapse: separate;
   border-spacing: 0;
 }
@@ -521,7 +541,7 @@ onMounted(() => {
 /* 스크롤바 스타일링 */
 .table-container::-webkit-scrollbar {
   width: 8px;  /* 세로 스크롤바 너비 */
-  height: 0;   /* 가로 스크롤바 높이를 0으로 설정하여 숨김 */
+  height: 8px; /* 가로 스크롤바 높이 */
 }
 
 .table-container::-webkit-scrollbar-track {

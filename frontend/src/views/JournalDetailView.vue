@@ -50,6 +50,7 @@
             <span class="star-icon">✏️</span>
           </button>
           <JournalDeleteButton 
+            class = "delete-button"
             :journal-id="journal.id"
             @delete-complete="handleDeleteComplete"
           />
@@ -260,7 +261,7 @@ h2 {
   border-top: 1px solid rgba(240, 219, 55, 0.2);
 }
 
-.edit-button {
+.edit-button .delete-button{
   padding: 12px 24px;
   /* border-radius: 8px; */
   border: none;

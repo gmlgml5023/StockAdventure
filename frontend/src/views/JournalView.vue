@@ -3,7 +3,7 @@
     <h1 class="journal-title">매매 일지</h1>
     <RouterLink :to="{ name: 'JournalCreateView' }" class="create-button">
       <span>작성하기</span>
-      <span class="star-icon">🚀</span>
+      <span class="star-icon">✏️</span>
     </RouterLink>
     <div v-if="store.journals.length === 0" class="empty-state">
       <span class="empty-icon">📝</span>

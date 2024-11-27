@@ -1,7 +1,7 @@
 <template>
   <button @click="updateStocksData" :disabled="isUpdating" class="update-button">
     <span class="button-text">{{ buttonText }}</span>
-    <span class="star-icon">{{ isUpdating ? '🚀' : '' }}</span>
+    <span class="star-icon">{{ isUpdating ? '🚀' : '🔄' }}</span>
   </button>
 </template>
 
@@ -15,7 +15,7 @@ const { isUpdating } = storeToRefs(stockStore)
 const { updateStocks } = stockStore
 
 const buttonText = computed(() => {
-  return isUpdating.value ? '주식 탐사 중...' : '주식 정보 불러오기'
+  return isUpdating.value ? '주식 정보 탐사 중...' : '주식 정보 업데이트'
 })
 
 const updateStocksData = () => {
@@ -27,7 +27,8 @@ const updateStocksData = () => {
 .update-button {
   padding-top: 12px;
   padding-bottom: 12px;
-  padding-left: 12px;
+  padding-left: 15px;
+  padding-right: 15px;
   border-radius: 8px;
   border: none;
   background: linear-gradient(45deg, 
